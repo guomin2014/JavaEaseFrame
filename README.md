@@ -1,2 +1,2 @@
 # SpringBootStarterKit
-用于快速启动和开发Spring Boot应用的工具包
+一个基于Spring Boot的简单框架，用于快速搭建基于SpringBoot的项目
