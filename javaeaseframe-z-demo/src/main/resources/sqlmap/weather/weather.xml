@@ -1,0 +1,3192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.javaeaseframe.demo.weather.dao.mybatis.WeatherDaoImpl">
+    
+	<!-- 字段和属性映射 -->
+	<resultMap type="WeatherEntity" id="WeatherEntity-Map">
+		<result property="id" column="id" />
+		<result property="areaId" column="areaId" />
+		<result property="city" column="city" />
+		<result property="cityCode" column="cityCode" />
+		<result property="date" column="date" />
+		<result property="reportTime" column="reportTime" />
+		<result property="sunriseTime" column="sunriseTime" />
+		<result property="sunsetTime" column="sunsetTime" />
+		<result property="weatherType" column="weatherType" />
+		<result property="weatherTypeForNight" column="weatherTypeForNight" />
+		<result property="weatherTypeForReal" column="weatherTypeForReal" />
+		<result property="weather" column="weather" />
+		<result property="weatherForNight" column="weatherForNight" />
+		<result property="weatherForReal" column="weatherForReal" />
+		<result property="airTemperature" column="airTemperature" />
+		<result property="airTemperatureForNight" column="airTemperatureForNight" />
+		<result property="airTemperatureForReal" column="airTemperatureForReal" />
+		<result property="airHumidity" column="airHumidity" />
+		<result property="airHumidityForReal" column="airHumidityForReal" />
+		<result property="airQuality" column="airQuality" />
+		<result property="airQI" column="airQI" />
+		<result property="airMaxTemperature" column="airMaxTemperature" />
+		<result property="airMinTemperature" column="airMinTemperature" />
+		<result property="airPM25Value" column="airPM25Value" />
+		<result property="airPM10Value" column="airPM10Value" />
+		<result property="windDirection" column="windDirection" />
+		<result property="windDirectionForNight" column="windDirectionForNight" />
+		<result property="windDirectionForReal" column="windDirectionForReal" />
+		<result property="windPower" column="windPower" />
+		<result property="windPowerForNight" column="windPowerForNight" />
+		<result property="windPowerForReal" column="windPowerForReal" />
+		<result property="barometric" column="barometric" />
+		<result property="ultravioletRays" column="ultravioletRays" />
+		<result property="ultraVioletIndex" column="ultraVioletIndex" />
+		<result property="remark" column="remark" />
+		<result property="ext" column="ext" />
+		<result property="lastSyncTime" column="lastSyncTime" />
+	</resultMap>
+	
+	
+	
+	<!-- 表所有列 -->
+	<sql id="_columns">
+		<trim suffixOverrides="," suffix="">
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('id') or colPickMode == 1 and data.containsKey('id')))">
+				a.id as id,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('areaId') or colPickMode == 1 and data.containsKey('areaId')))">
+				a.areaId as areaId,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('city') or colPickMode == 1 and data.containsKey('city')))">
+				a.city as city,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('cityCode') or colPickMode == 1 and data.containsKey('cityCode')))">
+				a.cityCode as cityCode,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('date') or colPickMode == 1 and data.containsKey('date')))">
+				a.date as date,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('reportTime') or colPickMode == 1 and data.containsKey('reportTime')))">
+				a.reportTime as reportTime,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('sunriseTime') or colPickMode == 1 and data.containsKey('sunriseTime')))">
+				a.sunriseTime as sunriseTime,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('sunsetTime') or colPickMode == 1 and data.containsKey('sunsetTime')))">
+				a.sunsetTime as sunsetTime,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('weatherType') or colPickMode == 1 and data.containsKey('weatherType')))">
+				a.weatherType as weatherType,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('weatherTypeForNight') or colPickMode == 1 and data.containsKey('weatherTypeForNight')))">
+				a.weatherTypeForNight as weatherTypeForNight,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('weatherTypeForReal') or colPickMode == 1 and data.containsKey('weatherTypeForReal')))">
+				a.weatherTypeForReal as weatherTypeForReal,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('weather') or colPickMode == 1 and data.containsKey('weather')))">
+				a.weather as weather,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('weatherForNight') or colPickMode == 1 and data.containsKey('weatherForNight')))">
+				a.weatherForNight as weatherForNight,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('weatherForReal') or colPickMode == 1 and data.containsKey('weatherForReal')))">
+				a.weatherForReal as weatherForReal,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('airTemperature') or colPickMode == 1 and data.containsKey('airTemperature')))">
+				a.airTemperature as airTemperature,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('airTemperatureForNight') or colPickMode == 1 and data.containsKey('airTemperatureForNight')))">
+				a.airTemperatureForNight as airTemperatureForNight,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('airTemperatureForReal') or colPickMode == 1 and data.containsKey('airTemperatureForReal')))">
+				a.airTemperatureForReal as airTemperatureForReal,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('airHumidity') or colPickMode == 1 and data.containsKey('airHumidity')))">
+				a.airHumidity as airHumidity,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('airHumidityForReal') or colPickMode == 1 and data.containsKey('airHumidityForReal')))">
+				a.airHumidityForReal as airHumidityForReal,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('airQuality') or colPickMode == 1 and data.containsKey('airQuality')))">
+				a.airQuality as airQuality,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('airQI') or colPickMode == 1 and data.containsKey('airQI')))">
+				a.airQI as airQI,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('airMaxTemperature') or colPickMode == 1 and data.containsKey('airMaxTemperature')))">
+				a.airMaxTemperature as airMaxTemperature,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('airMinTemperature') or colPickMode == 1 and data.containsKey('airMinTemperature')))">
+				a.airMinTemperature as airMinTemperature,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('airPM25Value') or colPickMode == 1 and data.containsKey('airPM25Value')))">
+				a.airPM25Value as airPM25Value,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('airPM10Value') or colPickMode == 1 and data.containsKey('airPM10Value')))">
+				a.airPM10Value as airPM10Value,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('windDirection') or colPickMode == 1 and data.containsKey('windDirection')))">
+				a.windDirection as windDirection,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('windDirectionForNight') or colPickMode == 1 and data.containsKey('windDirectionForNight')))">
+				a.windDirectionForNight as windDirectionForNight,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('windDirectionForReal') or colPickMode == 1 and data.containsKey('windDirectionForReal')))">
+				a.windDirectionForReal as windDirectionForReal,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('windPower') or colPickMode == 1 and data.containsKey('windPower')))">
+				a.windPower as windPower,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('windPowerForNight') or colPickMode == 1 and data.containsKey('windPowerForNight')))">
+				a.windPowerForNight as windPowerForNight,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('windPowerForReal') or colPickMode == 1 and data.containsKey('windPowerForReal')))">
+				a.windPowerForReal as windPowerForReal,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('barometric') or colPickMode == 1 and data.containsKey('barometric')))">
+				a.barometric as barometric,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('ultravioletRays') or colPickMode == 1 and data.containsKey('ultravioletRays')))">
+				a.ultravioletRays as ultravioletRays,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('ultraVioletIndex') or colPickMode == 1 and data.containsKey('ultraVioletIndex')))">
+				a.ultraVioletIndex as ultraVioletIndex,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('remark') or colPickMode == 1 and data.containsKey('remark')))">
+				a.remark as remark,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('ext') or colPickMode == 1 and data.containsKey('ext')))">
+				a.ext as ext,
+			</if>
+			<if test="(data == null) or (data != null and ( colPickMode == 0 and !data.containsKey('lastSyncTime') or colPickMode == 1 and data.containsKey('lastSyncTime')))">
+				a.lastSyncTime as lastSyncTime,
+			</if>
+		</trim>
+	</sql>
+	<!-- 新增 -->
+	<insert id="insert" parameterType="WeatherEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into normal_demo_weather 
+		(areaId,city,cityCode,date,reportTime,
+			sunriseTime,sunsetTime,weatherType,weatherTypeForNight,weatherTypeForReal,
+			weather,weatherForNight,weatherForReal,airTemperature,airTemperatureForNight,
+			airTemperatureForReal,airHumidity,airHumidityForReal,airQuality,airQI,
+			airMaxTemperature,airMinTemperature,airPM25Value,airPM10Value,windDirection,
+			windDirectionForNight,windDirectionForReal,windPower,windPowerForNight,windPowerForReal,
+			barometric,ultravioletRays,ultraVioletIndex,remark,ext,
+			lastSyncTime
+		)VALUES(#{areaId},#{city},#{cityCode},#{date},#{reportTime},
+			#{sunriseTime},#{sunsetTime},#{weatherType},#{weatherTypeForNight},#{weatherTypeForReal},
+			#{weather},#{weatherForNight},#{weatherForReal},#{airTemperature},#{airTemperatureForNight},
+			#{airTemperatureForReal},#{airHumidity},#{airHumidityForReal},#{airQuality},#{airQI},
+			#{airMaxTemperature},#{airMinTemperature},#{airPM25Value},#{airPM10Value},#{windDirection},
+			#{windDirectionForNight},#{windDirectionForReal},#{windPower},#{windPowerForNight},#{windPowerForReal},
+			#{barometric},#{ultravioletRays},#{ultraVioletIndex},#{remark},#{ext},
+			#{lastSyncTime})
+	</insert>
+	<!-- 批量新增 -->
+	<insert id="insertBatch" parameterType="paramDto" useGeneratedKeys="true" keyProperty="id">
+		insert into normal_demo_weather 
+		(areaId,city,cityCode,date,reportTime,
+			sunriseTime,sunsetTime,weatherType,weatherTypeForNight,weatherTypeForReal,
+			weather,weatherForNight,weatherForReal,airTemperature,airTemperatureForNight,
+			airTemperatureForReal,airHumidity,airHumidityForReal,airQuality,airQI,
+			airMaxTemperature,airMinTemperature,airPM25Value,airPM10Value,windDirection,
+			windDirectionForNight,windDirectionForReal,windPower,windPowerForNight,windPowerForReal,
+			barometric,ultravioletRays,ultraVioletIndex,remark,ext,
+			lastSyncTime
+		)
+		VALUES
+		<foreach collection="data.dataList" item="item" index="index" separator="," >  
+		(#{item.areaId},#{item.city},#{item.cityCode},#{item.date},#{item.reportTime},
+			#{item.sunriseTime},#{item.sunsetTime},#{item.weatherType},#{item.weatherTypeForNight},#{item.weatherTypeForReal},
+			#{item.weather},#{item.weatherForNight},#{item.weatherForReal},#{item.airTemperature},#{item.airTemperatureForNight},
+			#{item.airTemperatureForReal},#{item.airHumidity},#{item.airHumidityForReal},#{item.airQuality},#{item.airQI},
+			#{item.airMaxTemperature},#{item.airMinTemperature},#{item.airPM25Value},#{item.airPM10Value},#{item.windDirection},
+			#{item.windDirectionForNight},#{item.windDirectionForReal},#{item.windPower},#{item.windPowerForNight},#{item.windPowerForReal},
+			#{item.barometric},#{item.ultravioletRays},#{item.ultraVioletIndex},#{item.remark},#{item.ext},
+			#{item.lastSyncTime})
+		</foreach>
+	</insert>
+	<!-- 根据ParamDto更新 -->
+	<update id="update" parameterType="paramDto">
+		update normal_demo_weather as a
+		   set
+		   <trim suffixOverrides="," suffix="">
+				<if test="(colPickMode==0 and data.containsKey('areaId')) or (colPickMode==1 and !data.containsKey('areaId'))">
+					a.areaId=#{data.areaId},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('areaIdIncrement')) or (colPickMode==1 and !data.containsKey('areaIdIncrement'))">
+					a.areaId=ifnull(a.areaId,0) + #{data.areaIdIncrement},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('city')) or (colPickMode==1 and !data.containsKey('city'))">
+					a.city=#{data.city},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('cityCode')) or (colPickMode==1 and !data.containsKey('cityCode'))">
+					a.cityCode=#{data.cityCode},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('date')) or (colPickMode==1 and !data.containsKey('date'))">
+					a.date=#{data.date},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('dateIncrement')) or (colPickMode==1 and !data.containsKey('dateIncrement'))">
+					a.date=ifnull(a.date,0) + #{data.dateIncrement},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('reportTime')) or (colPickMode==1 and !data.containsKey('reportTime'))">
+					a.reportTime=#{data.reportTime},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('sunriseTime')) or (colPickMode==1 and !data.containsKey('sunriseTime'))">
+					a.sunriseTime=#{data.sunriseTime},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('sunsetTime')) or (colPickMode==1 and !data.containsKey('sunsetTime'))">
+					a.sunsetTime=#{data.sunsetTime},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('weatherType')) or (colPickMode==1 and !data.containsKey('weatherType'))">
+					a.weatherType=#{data.weatherType},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('weatherTypeIncrement')) or (colPickMode==1 and !data.containsKey('weatherTypeIncrement'))">
+					a.weatherType=ifnull(a.weatherType,0) + #{data.weatherTypeIncrement},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('weatherTypeForNight')) or (colPickMode==1 and !data.containsKey('weatherTypeForNight'))">
+					a.weatherTypeForNight=#{data.weatherTypeForNight},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('weatherTypeForNightIncrement')) or (colPickMode==1 and !data.containsKey('weatherTypeForNightIncrement'))">
+					a.weatherTypeForNight=ifnull(a.weatherTypeForNight,0) + #{data.weatherTypeForNightIncrement},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('weatherTypeForReal')) or (colPickMode==1 and !data.containsKey('weatherTypeForReal'))">
+					a.weatherTypeForReal=#{data.weatherTypeForReal},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('weatherTypeForRealIncrement')) or (colPickMode==1 and !data.containsKey('weatherTypeForRealIncrement'))">
+					a.weatherTypeForReal=ifnull(a.weatherTypeForReal,0) + #{data.weatherTypeForRealIncrement},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('weather')) or (colPickMode==1 and !data.containsKey('weather'))">
+					a.weather=#{data.weather},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('weatherForNight')) or (colPickMode==1 and !data.containsKey('weatherForNight'))">
+					a.weatherForNight=#{data.weatherForNight},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('weatherForReal')) or (colPickMode==1 and !data.containsKey('weatherForReal'))">
+					a.weatherForReal=#{data.weatherForReal},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('airTemperature')) or (colPickMode==1 and !data.containsKey('airTemperature'))">
+					a.airTemperature=#{data.airTemperature},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('airTemperatureIncrement')) or (colPickMode==1 and !data.containsKey('airTemperatureIncrement'))">
+					a.airTemperature=ifnull(a.airTemperature,0) + #{data.airTemperatureIncrement},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('airTemperatureForNight')) or (colPickMode==1 and !data.containsKey('airTemperatureForNight'))">
+					a.airTemperatureForNight=#{data.airTemperatureForNight},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('airTemperatureForNightIncrement')) or (colPickMode==1 and !data.containsKey('airTemperatureForNightIncrement'))">
+					a.airTemperatureForNight=ifnull(a.airTemperatureForNight,0) + #{data.airTemperatureForNightIncrement},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('airTemperatureForReal')) or (colPickMode==1 and !data.containsKey('airTemperatureForReal'))">
+					a.airTemperatureForReal=#{data.airTemperatureForReal},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('airTemperatureForRealIncrement')) or (colPickMode==1 and !data.containsKey('airTemperatureForRealIncrement'))">
+					a.airTemperatureForReal=ifnull(a.airTemperatureForReal,0) + #{data.airTemperatureForRealIncrement},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('airHumidity')) or (colPickMode==1 and !data.containsKey('airHumidity'))">
+					a.airHumidity=#{data.airHumidity},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('airHumidityIncrement')) or (colPickMode==1 and !data.containsKey('airHumidityIncrement'))">
+					a.airHumidity=ifnull(a.airHumidity,0) + #{data.airHumidityIncrement},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('airHumidityForReal')) or (colPickMode==1 and !data.containsKey('airHumidityForReal'))">
+					a.airHumidityForReal=#{data.airHumidityForReal},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('airHumidityForRealIncrement')) or (colPickMode==1 and !data.containsKey('airHumidityForRealIncrement'))">
+					a.airHumidityForReal=ifnull(a.airHumidityForReal,0) + #{data.airHumidityForRealIncrement},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('airQuality')) or (colPickMode==1 and !data.containsKey('airQuality'))">
+					a.airQuality=#{data.airQuality},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('airQI')) or (colPickMode==1 and !data.containsKey('airQI'))">
+					a.airQI=#{data.airQI},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('airQIIncrement')) or (colPickMode==1 and !data.containsKey('airQIIncrement'))">
+					a.airQI=ifnull(a.airQI,0) + #{data.airQIIncrement},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('airMaxTemperature')) or (colPickMode==1 and !data.containsKey('airMaxTemperature'))">
+					a.airMaxTemperature=#{data.airMaxTemperature},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('airMaxTemperatureIncrement')) or (colPickMode==1 and !data.containsKey('airMaxTemperatureIncrement'))">
+					a.airMaxTemperature=ifnull(a.airMaxTemperature,0) + #{data.airMaxTemperatureIncrement},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('airMinTemperature')) or (colPickMode==1 and !data.containsKey('airMinTemperature'))">
+					a.airMinTemperature=#{data.airMinTemperature},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('airMinTemperatureIncrement')) or (colPickMode==1 and !data.containsKey('airMinTemperatureIncrement'))">
+					a.airMinTemperature=ifnull(a.airMinTemperature,0) + #{data.airMinTemperatureIncrement},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('airPM25Value')) or (colPickMode==1 and !data.containsKey('airPM25Value'))">
+					a.airPM25Value=#{data.airPM25Value},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('airPM25ValueIncrement')) or (colPickMode==1 and !data.containsKey('airPM25ValueIncrement'))">
+					a.airPM25Value=ifnull(a.airPM25Value,0) + #{data.airPM25ValueIncrement},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('airPM10Value')) or (colPickMode==1 and !data.containsKey('airPM10Value'))">
+					a.airPM10Value=#{data.airPM10Value},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('airPM10ValueIncrement')) or (colPickMode==1 and !data.containsKey('airPM10ValueIncrement'))">
+					a.airPM10Value=ifnull(a.airPM10Value,0) + #{data.airPM10ValueIncrement},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('windDirection')) or (colPickMode==1 and !data.containsKey('windDirection'))">
+					a.windDirection=#{data.windDirection},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('windDirectionForNight')) or (colPickMode==1 and !data.containsKey('windDirectionForNight'))">
+					a.windDirectionForNight=#{data.windDirectionForNight},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('windDirectionForReal')) or (colPickMode==1 and !data.containsKey('windDirectionForReal'))">
+					a.windDirectionForReal=#{data.windDirectionForReal},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('windPower')) or (colPickMode==1 and !data.containsKey('windPower'))">
+					a.windPower=#{data.windPower},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('windPowerForNight')) or (colPickMode==1 and !data.containsKey('windPowerForNight'))">
+					a.windPowerForNight=#{data.windPowerForNight},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('windPowerForReal')) or (colPickMode==1 and !data.containsKey('windPowerForReal'))">
+					a.windPowerForReal=#{data.windPowerForReal},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('barometric')) or (colPickMode==1 and !data.containsKey('barometric'))">
+					a.barometric=#{data.barometric},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('barometricIncrement')) or (colPickMode==1 and !data.containsKey('barometricIncrement'))">
+					a.barometric=ifnull(a.barometric,0) + #{data.barometricIncrement},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('ultravioletRays')) or (colPickMode==1 and !data.containsKey('ultravioletRays'))">
+					a.ultravioletRays=#{data.ultravioletRays},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('ultravioletRaysIncrement')) or (colPickMode==1 and !data.containsKey('ultravioletRaysIncrement'))">
+					a.ultravioletRays=ifnull(a.ultravioletRays,0) + #{data.ultravioletRaysIncrement},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('ultraVioletIndex')) or (colPickMode==1 and !data.containsKey('ultraVioletIndex'))">
+					a.ultraVioletIndex=#{data.ultraVioletIndex},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('ultraVioletIndexIncrement')) or (colPickMode==1 and !data.containsKey('ultraVioletIndexIncrement'))">
+					a.ultraVioletIndex=ifnull(a.ultraVioletIndex,0) + #{data.ultraVioletIndexIncrement},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('remark')) or (colPickMode==1 and !data.containsKey('remark'))">
+					a.remark=#{data.remark},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('ext')) or (colPickMode==1 and !data.containsKey('ext'))">
+					a.ext=#{data.ext},
+				</if>
+				<if test="(colPickMode==0 and data.containsKey('lastSyncTime')) or (colPickMode==1 and !data.containsKey('lastSyncTime'))">
+					a.lastSyncTime=#{data.lastSyncTime},
+				</if>
+		    </trim>
+		   <trim suffixOverrides="where" suffix="">
+			    where
+			    <trim prefixOverrides="and" prefix="">
+					<include refid="_condition_"/>
+			   	</trim>
+			</trim>
+	</update>
+	<!-- 批量更新 -->
+	<update id="updateBatch" parameterType="paramDto">
+		update normal_demo_weather as a
+		<trim prefix="set" suffixOverrides=",">
+			<trim prefix="areaId=(case" suffix="ELSE areaId end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<choose>
+						<when test="(colPickMode==0 and item.containsKey('areaId')) or (colPickMode==1 and !item.containsKey('areaId'))">
+							when a.id=#{item.id} then #{item.areaId}
+						</when>
+						<when test="(colPickMode==0 and item.containsKey('areaIdIncrement')) or (colPickMode==1 and !item.containsKey('areaIdIncrement'))">
+							when a.id=#{item.id} then ifnull(a.areaId,0) + #{item.areaIdIncrement}
+						</when>
+					</choose>
+				</foreach>
+			</trim>
+			<trim prefix="city=(case" suffix="ELSE city end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<if test="(colPickMode==0 and item.containsKey('city')) or (colPickMode==1 and !item.containsKey('city'))">
+						when a.id=#{item.id} then #{item.city}
+					</if>
+				</foreach>
+			</trim>
+			<trim prefix="cityCode=(case" suffix="ELSE cityCode end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<if test="(colPickMode==0 and item.containsKey('cityCode')) or (colPickMode==1 and !item.containsKey('cityCode'))">
+						when a.id=#{item.id} then #{item.cityCode}
+					</if>
+				</foreach>
+			</trim>
+			<trim prefix="date=(case" suffix="ELSE date end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<choose>
+						<when test="(colPickMode==0 and item.containsKey('date')) or (colPickMode==1 and !item.containsKey('date'))">
+							when a.id=#{item.id} then #{item.date}
+						</when>
+						<when test="(colPickMode==0 and item.containsKey('dateIncrement')) or (colPickMode==1 and !item.containsKey('dateIncrement'))">
+							when a.id=#{item.id} then ifnull(a.date,0) + #{item.dateIncrement}
+						</when>
+					</choose>
+				</foreach>
+			</trim>
+			<trim prefix="reportTime=(case" suffix="ELSE reportTime end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<if test="(colPickMode==0 and item.containsKey('reportTime')) or (colPickMode==1 and !item.containsKey('reportTime'))">
+						when a.id=#{item.id} then #{item.reportTime}
+					</if>
+				</foreach>
+			</trim>
+			<trim prefix="sunriseTime=(case" suffix="ELSE sunriseTime end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<if test="(colPickMode==0 and item.containsKey('sunriseTime')) or (colPickMode==1 and !item.containsKey('sunriseTime'))">
+						when a.id=#{item.id} then #{item.sunriseTime}
+					</if>
+				</foreach>
+			</trim>
+			<trim prefix="sunsetTime=(case" suffix="ELSE sunsetTime end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<if test="(colPickMode==0 and item.containsKey('sunsetTime')) or (colPickMode==1 and !item.containsKey('sunsetTime'))">
+						when a.id=#{item.id} then #{item.sunsetTime}
+					</if>
+				</foreach>
+			</trim>
+			<trim prefix="weatherType=(case" suffix="ELSE weatherType end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<choose>
+						<when test="(colPickMode==0 and item.containsKey('weatherType')) or (colPickMode==1 and !item.containsKey('weatherType'))">
+							when a.id=#{item.id} then #{item.weatherType}
+						</when>
+						<when test="(colPickMode==0 and item.containsKey('weatherTypeIncrement')) or (colPickMode==1 and !item.containsKey('weatherTypeIncrement'))">
+							when a.id=#{item.id} then ifnull(a.weatherType,0) + #{item.weatherTypeIncrement}
+						</when>
+					</choose>
+				</foreach>
+			</trim>
+			<trim prefix="weatherTypeForNight=(case" suffix="ELSE weatherTypeForNight end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<choose>
+						<when test="(colPickMode==0 and item.containsKey('weatherTypeForNight')) or (colPickMode==1 and !item.containsKey('weatherTypeForNight'))">
+							when a.id=#{item.id} then #{item.weatherTypeForNight}
+						</when>
+						<when test="(colPickMode==0 and item.containsKey('weatherTypeForNightIncrement')) or (colPickMode==1 and !item.containsKey('weatherTypeForNightIncrement'))">
+							when a.id=#{item.id} then ifnull(a.weatherTypeForNight,0) + #{item.weatherTypeForNightIncrement}
+						</when>
+					</choose>
+				</foreach>
+			</trim>
+			<trim prefix="weatherTypeForReal=(case" suffix="ELSE weatherTypeForReal end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<choose>
+						<when test="(colPickMode==0 and item.containsKey('weatherTypeForReal')) or (colPickMode==1 and !item.containsKey('weatherTypeForReal'))">
+							when a.id=#{item.id} then #{item.weatherTypeForReal}
+						</when>
+						<when test="(colPickMode==0 and item.containsKey('weatherTypeForRealIncrement')) or (colPickMode==1 and !item.containsKey('weatherTypeForRealIncrement'))">
+							when a.id=#{item.id} then ifnull(a.weatherTypeForReal,0) + #{item.weatherTypeForRealIncrement}
+						</when>
+					</choose>
+				</foreach>
+			</trim>
+			<trim prefix="weather=(case" suffix="ELSE weather end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<if test="(colPickMode==0 and item.containsKey('weather')) or (colPickMode==1 and !item.containsKey('weather'))">
+						when a.id=#{item.id} then #{item.weather}
+					</if>
+				</foreach>
+			</trim>
+			<trim prefix="weatherForNight=(case" suffix="ELSE weatherForNight end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<if test="(colPickMode==0 and item.containsKey('weatherForNight')) or (colPickMode==1 and !item.containsKey('weatherForNight'))">
+						when a.id=#{item.id} then #{item.weatherForNight}
+					</if>
+				</foreach>
+			</trim>
+			<trim prefix="weatherForReal=(case" suffix="ELSE weatherForReal end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<if test="(colPickMode==0 and item.containsKey('weatherForReal')) or (colPickMode==1 and !item.containsKey('weatherForReal'))">
+						when a.id=#{item.id} then #{item.weatherForReal}
+					</if>
+				</foreach>
+			</trim>
+			<trim prefix="airTemperature=(case" suffix="ELSE airTemperature end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<choose>
+						<when test="(colPickMode==0 and item.containsKey('airTemperature')) or (colPickMode==1 and !item.containsKey('airTemperature'))">
+							when a.id=#{item.id} then #{item.airTemperature}
+						</when>
+						<when test="(colPickMode==0 and item.containsKey('airTemperatureIncrement')) or (colPickMode==1 and !item.containsKey('airTemperatureIncrement'))">
+							when a.id=#{item.id} then ifnull(a.airTemperature,0) + #{item.airTemperatureIncrement}
+						</when>
+					</choose>
+				</foreach>
+			</trim>
+			<trim prefix="airTemperatureForNight=(case" suffix="ELSE airTemperatureForNight end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<choose>
+						<when test="(colPickMode==0 and item.containsKey('airTemperatureForNight')) or (colPickMode==1 and !item.containsKey('airTemperatureForNight'))">
+							when a.id=#{item.id} then #{item.airTemperatureForNight}
+						</when>
+						<when test="(colPickMode==0 and item.containsKey('airTemperatureForNightIncrement')) or (colPickMode==1 and !item.containsKey('airTemperatureForNightIncrement'))">
+							when a.id=#{item.id} then ifnull(a.airTemperatureForNight,0) + #{item.airTemperatureForNightIncrement}
+						</when>
+					</choose>
+				</foreach>
+			</trim>
+			<trim prefix="airTemperatureForReal=(case" suffix="ELSE airTemperatureForReal end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<choose>
+						<when test="(colPickMode==0 and item.containsKey('airTemperatureForReal')) or (colPickMode==1 and !item.containsKey('airTemperatureForReal'))">
+							when a.id=#{item.id} then #{item.airTemperatureForReal}
+						</when>
+						<when test="(colPickMode==0 and item.containsKey('airTemperatureForRealIncrement')) or (colPickMode==1 and !item.containsKey('airTemperatureForRealIncrement'))">
+							when a.id=#{item.id} then ifnull(a.airTemperatureForReal,0) + #{item.airTemperatureForRealIncrement}
+						</when>
+					</choose>
+				</foreach>
+			</trim>
+			<trim prefix="airHumidity=(case" suffix="ELSE airHumidity end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<choose>
+						<when test="(colPickMode==0 and item.containsKey('airHumidity')) or (colPickMode==1 and !item.containsKey('airHumidity'))">
+							when a.id=#{item.id} then #{item.airHumidity}
+						</when>
+						<when test="(colPickMode==0 and item.containsKey('airHumidityIncrement')) or (colPickMode==1 and !item.containsKey('airHumidityIncrement'))">
+							when a.id=#{item.id} then ifnull(a.airHumidity,0) + #{item.airHumidityIncrement}
+						</when>
+					</choose>
+				</foreach>
+			</trim>
+			<trim prefix="airHumidityForReal=(case" suffix="ELSE airHumidityForReal end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<choose>
+						<when test="(colPickMode==0 and item.containsKey('airHumidityForReal')) or (colPickMode==1 and !item.containsKey('airHumidityForReal'))">
+							when a.id=#{item.id} then #{item.airHumidityForReal}
+						</when>
+						<when test="(colPickMode==0 and item.containsKey('airHumidityForRealIncrement')) or (colPickMode==1 and !item.containsKey('airHumidityForRealIncrement'))">
+							when a.id=#{item.id} then ifnull(a.airHumidityForReal,0) + #{item.airHumidityForRealIncrement}
+						</when>
+					</choose>
+				</foreach>
+			</trim>
+			<trim prefix="airQuality=(case" suffix="ELSE airQuality end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<if test="(colPickMode==0 and item.containsKey('airQuality')) or (colPickMode==1 and !item.containsKey('airQuality'))">
+						when a.id=#{item.id} then #{item.airQuality}
+					</if>
+				</foreach>
+			</trim>
+			<trim prefix="airQI=(case" suffix="ELSE airQI end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<choose>
+						<when test="(colPickMode==0 and item.containsKey('airQI')) or (colPickMode==1 and !item.containsKey('airQI'))">
+							when a.id=#{item.id} then #{item.airQI}
+						</when>
+						<when test="(colPickMode==0 and item.containsKey('airQIIncrement')) or (colPickMode==1 and !item.containsKey('airQIIncrement'))">
+							when a.id=#{item.id} then ifnull(a.airQI,0) + #{item.airQIIncrement}
+						</when>
+					</choose>
+				</foreach>
+			</trim>
+			<trim prefix="airMaxTemperature=(case" suffix="ELSE airMaxTemperature end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<choose>
+						<when test="(colPickMode==0 and item.containsKey('airMaxTemperature')) or (colPickMode==1 and !item.containsKey('airMaxTemperature'))">
+							when a.id=#{item.id} then #{item.airMaxTemperature}
+						</when>
+						<when test="(colPickMode==0 and item.containsKey('airMaxTemperatureIncrement')) or (colPickMode==1 and !item.containsKey('airMaxTemperatureIncrement'))">
+							when a.id=#{item.id} then ifnull(a.airMaxTemperature,0) + #{item.airMaxTemperatureIncrement}
+						</when>
+					</choose>
+				</foreach>
+			</trim>
+			<trim prefix="airMinTemperature=(case" suffix="ELSE airMinTemperature end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<choose>
+						<when test="(colPickMode==0 and item.containsKey('airMinTemperature')) or (colPickMode==1 and !item.containsKey('airMinTemperature'))">
+							when a.id=#{item.id} then #{item.airMinTemperature}
+						</when>
+						<when test="(colPickMode==0 and item.containsKey('airMinTemperatureIncrement')) or (colPickMode==1 and !item.containsKey('airMinTemperatureIncrement'))">
+							when a.id=#{item.id} then ifnull(a.airMinTemperature,0) + #{item.airMinTemperatureIncrement}
+						</when>
+					</choose>
+				</foreach>
+			</trim>
+			<trim prefix="airPM25Value=(case" suffix="ELSE airPM25Value end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<choose>
+						<when test="(colPickMode==0 and item.containsKey('airPM25Value')) or (colPickMode==1 and !item.containsKey('airPM25Value'))">
+							when a.id=#{item.id} then #{item.airPM25Value}
+						</when>
+						<when test="(colPickMode==0 and item.containsKey('airPM25ValueIncrement')) or (colPickMode==1 and !item.containsKey('airPM25ValueIncrement'))">
+							when a.id=#{item.id} then ifnull(a.airPM25Value,0) + #{item.airPM25ValueIncrement}
+						</when>
+					</choose>
+				</foreach>
+			</trim>
+			<trim prefix="airPM10Value=(case" suffix="ELSE airPM10Value end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<choose>
+						<when test="(colPickMode==0 and item.containsKey('airPM10Value')) or (colPickMode==1 and !item.containsKey('airPM10Value'))">
+							when a.id=#{item.id} then #{item.airPM10Value}
+						</when>
+						<when test="(colPickMode==0 and item.containsKey('airPM10ValueIncrement')) or (colPickMode==1 and !item.containsKey('airPM10ValueIncrement'))">
+							when a.id=#{item.id} then ifnull(a.airPM10Value,0) + #{item.airPM10ValueIncrement}
+						</when>
+					</choose>
+				</foreach>
+			</trim>
+			<trim prefix="windDirection=(case" suffix="ELSE windDirection end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<if test="(colPickMode==0 and item.containsKey('windDirection')) or (colPickMode==1 and !item.containsKey('windDirection'))">
+						when a.id=#{item.id} then #{item.windDirection}
+					</if>
+				</foreach>
+			</trim>
+			<trim prefix="windDirectionForNight=(case" suffix="ELSE windDirectionForNight end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<if test="(colPickMode==0 and item.containsKey('windDirectionForNight')) or (colPickMode==1 and !item.containsKey('windDirectionForNight'))">
+						when a.id=#{item.id} then #{item.windDirectionForNight}
+					</if>
+				</foreach>
+			</trim>
+			<trim prefix="windDirectionForReal=(case" suffix="ELSE windDirectionForReal end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<if test="(colPickMode==0 and item.containsKey('windDirectionForReal')) or (colPickMode==1 and !item.containsKey('windDirectionForReal'))">
+						when a.id=#{item.id} then #{item.windDirectionForReal}
+					</if>
+				</foreach>
+			</trim>
+			<trim prefix="windPower=(case" suffix="ELSE windPower end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<if test="(colPickMode==0 and item.containsKey('windPower')) or (colPickMode==1 and !item.containsKey('windPower'))">
+						when a.id=#{item.id} then #{item.windPower}
+					</if>
+				</foreach>
+			</trim>
+			<trim prefix="windPowerForNight=(case" suffix="ELSE windPowerForNight end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<if test="(colPickMode==0 and item.containsKey('windPowerForNight')) or (colPickMode==1 and !item.containsKey('windPowerForNight'))">
+						when a.id=#{item.id} then #{item.windPowerForNight}
+					</if>
+				</foreach>
+			</trim>
+			<trim prefix="windPowerForReal=(case" suffix="ELSE windPowerForReal end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<if test="(colPickMode==0 and item.containsKey('windPowerForReal')) or (colPickMode==1 and !item.containsKey('windPowerForReal'))">
+						when a.id=#{item.id} then #{item.windPowerForReal}
+					</if>
+				</foreach>
+			</trim>
+			<trim prefix="barometric=(case" suffix="ELSE barometric end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<choose>
+						<when test="(colPickMode==0 and item.containsKey('barometric')) or (colPickMode==1 and !item.containsKey('barometric'))">
+							when a.id=#{item.id} then #{item.barometric}
+						</when>
+						<when test="(colPickMode==0 and item.containsKey('barometricIncrement')) or (colPickMode==1 and !item.containsKey('barometricIncrement'))">
+							when a.id=#{item.id} then ifnull(a.barometric,0) + #{item.barometricIncrement}
+						</when>
+					</choose>
+				</foreach>
+			</trim>
+			<trim prefix="ultravioletRays=(case" suffix="ELSE ultravioletRays end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<choose>
+						<when test="(colPickMode==0 and item.containsKey('ultravioletRays')) or (colPickMode==1 and !item.containsKey('ultravioletRays'))">
+							when a.id=#{item.id} then #{item.ultravioletRays}
+						</when>
+						<when test="(colPickMode==0 and item.containsKey('ultravioletRaysIncrement')) or (colPickMode==1 and !item.containsKey('ultravioletRaysIncrement'))">
+							when a.id=#{item.id} then ifnull(a.ultravioletRays,0) + #{item.ultravioletRaysIncrement}
+						</when>
+					</choose>
+				</foreach>
+			</trim>
+			<trim prefix="ultraVioletIndex=(case" suffix="ELSE ultraVioletIndex end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<choose>
+						<when test="(colPickMode==0 and item.containsKey('ultraVioletIndex')) or (colPickMode==1 and !item.containsKey('ultraVioletIndex'))">
+							when a.id=#{item.id} then #{item.ultraVioletIndex}
+						</when>
+						<when test="(colPickMode==0 and item.containsKey('ultraVioletIndexIncrement')) or (colPickMode==1 and !item.containsKey('ultraVioletIndexIncrement'))">
+							when a.id=#{item.id} then ifnull(a.ultraVioletIndex,0) + #{item.ultraVioletIndexIncrement}
+						</when>
+					</choose>
+				</foreach>
+			</trim>
+			<trim prefix="remark=(case" suffix="ELSE remark end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<if test="(colPickMode==0 and item.containsKey('remark')) or (colPickMode==1 and !item.containsKey('remark'))">
+						when a.id=#{item.id} then #{item.remark}
+					</if>
+				</foreach>
+			</trim>
+			<trim prefix="ext=(case" suffix="ELSE ext end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<if test="(colPickMode==0 and item.containsKey('ext')) or (colPickMode==1 and !item.containsKey('ext'))">
+						when a.id=#{item.id} then #{item.ext}
+					</if>
+				</foreach>
+			</trim>
+			<trim prefix="lastSyncTime=(case" suffix="ELSE lastSyncTime end),">
+				<foreach collection="data.dataList" item="item" index="index" separator="" >
+					<if test="(colPickMode==0 and item.containsKey('lastSyncTime')) or (colPickMode==1 and !item.containsKey('lastSyncTime'))">
+						when a.id=#{item.id} then #{item.lastSyncTime}
+					</if>
+				</foreach>
+			</trim>
+        </trim>
+        where id in
+		<foreach collection="data.dataList" item="item" index="index" open="(" separator="," close=")">
+			#{item.id}
+		</foreach>
+	</update>
+	<!-- 根据主健查询 -->
+	<select id="getByKey" parameterType="paramDto" resultMap="WeatherEntity-Map">
+		select <include refid="_columns"/>
+		from normal_demo_weather as a
+	   where a.id=#{condition.id}
+	</select>
+	<!-- 根据主健删除 -->
+	<delete id="deleteByKey" parameterType="paramDto">
+		delete a.* from normal_demo_weather as a where a.id=#{condition.id}
+	</delete>
+	<!-- 根据主健删除一批，针对单一主健有效 -->
+	<delete id="deleteByKeys">
+		delete from normal_demo_weather where id in
+		<foreach collection="array" item="item" index="index" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	<!-- 根据paramDto删除一批 -->
+	<delete id="deleteByMap" parameterType="paramDto">
+		delete a.* from normal_demo_weather as a
+		<trim suffixOverrides="where" suffix="">
+			 where 
+			<trim prefixOverrides="and" prefix="">
+				<include refid="_condition_"/>
+			</trim>
+		</trim>
+	</delete>
+	<!-- 获取列表 -->
+	<select id="getList" parameterType="paramDto" resultMap="WeatherEntity-Map">
+		select <include refid="_columns"/>
+		  from normal_demo_weather as a
+		 <trim suffixOverrides="where" suffix="">
+			 where 
+			 <trim prefixOverrides="and" prefix="">
+			 	<include refid="_condition_"/>
+			 </trim>
+		 </trim>
+		 <include refid="_orderCols_"/>
+	</select>
+	<!-- 获取 -->
+	<select id="getListCount" parameterType="paramDto" resultType="int">
+		select count(1)
+		  from normal_demo_weather as a
+		 <trim suffixOverrides="where" suffix="">
+			 where 
+			 <trim prefixOverrides="and" prefix="">
+				<include refid="_condition_"/>
+			</trim>
+		</trim>
+	</select>
+	
+	<!-- 获取分组列表 -->
+	<select id="getStatList" parameterType="paramDto" resultMap="WeatherEntity-Map">
+		SELECT
+		<if test="groupList != null and !groupList.isEmpty()">
+			<trim suffixOverrides=","  suffix=",">
+				<foreach collection="groupList" open="" close="" index="index" item="item" separator=",">
+					<choose>
+						<when test='item=="id"'>id</when>
+						<when test='item=="areaId"'>areaId</when>
+						<when test='item=="city"'>city</when>
+						<when test='item=="cityCode"'>cityCode</when>
+						<when test='item=="date"'>date</when>
+						<when test='item=="reportTime"'>reportTime</when>
+						<when test='item=="sunriseTime"'>sunriseTime</when>
+						<when test='item=="sunsetTime"'>sunsetTime</when>
+						<when test='item=="weatherType"'>weatherType</when>
+						<when test='item=="weatherTypeForNight"'>weatherTypeForNight</when>
+						<when test='item=="weatherTypeForReal"'>weatherTypeForReal</when>
+						<when test='item=="weather"'>weather</when>
+						<when test='item=="weatherForNight"'>weatherForNight</when>
+						<when test='item=="weatherForReal"'>weatherForReal</when>
+						<when test='item=="airTemperature"'>airTemperature</when>
+						<when test='item=="airTemperatureForNight"'>airTemperatureForNight</when>
+						<when test='item=="airTemperatureForReal"'>airTemperatureForReal</when>
+						<when test='item=="airHumidity"'>airHumidity</when>
+						<when test='item=="airHumidityForReal"'>airHumidityForReal</when>
+						<when test='item=="airQuality"'>airQuality</when>
+						<when test='item=="airQI"'>airQI</when>
+						<when test='item=="airMaxTemperature"'>airMaxTemperature</when>
+						<when test='item=="airMinTemperature"'>airMinTemperature</when>
+						<when test='item=="airPM25Value"'>airPM25Value</when>
+						<when test='item=="airPM10Value"'>airPM10Value</when>
+						<when test='item=="windDirection"'>windDirection</when>
+						<when test='item=="windDirectionForNight"'>windDirectionForNight</when>
+						<when test='item=="windDirectionForReal"'>windDirectionForReal</when>
+						<when test='item=="windPower"'>windPower</when>
+						<when test='item=="windPowerForNight"'>windPowerForNight</when>
+						<when test='item=="windPowerForReal"'>windPowerForReal</when>
+						<when test='item=="barometric"'>barometric</when>
+						<when test='item=="ultravioletRays"'>ultravioletRays</when>
+						<when test='item=="ultraVioletIndex"'>ultraVioletIndex</when>
+						<when test='item=="remark"'>remark</when>
+						<when test='item=="ext"'>ext</when>
+						<when test='item=="lastSyncTime"'>lastSyncTime</when>
+					</choose>
+				</foreach>
+			</trim>
+		</if>
+		FROM normal_demo_weather AS a
+		 <trim suffixOverrides="where" suffix="">
+			 WHERE 
+			 <trim prefixOverrides="and" prefix="">
+			 	<include refid="_condition_"/>
+			 </trim>
+		 </trim>
+		 <include refid="_group_by_"/>
+		 <include refid="_orderCols_"/>
+	</select>
+	<!-- 获取分组列表 -->
+	<select id="getStatListCount" parameterType="paramDto" resultType="int">
+		SELECT count(1)
+		FROM normal_demo_weather AS a
+		 <trim suffixOverrides="where" suffix="">
+			 WHERE 
+			 <trim prefixOverrides="and" prefix="">
+			 	<include refid="_condition_"/>
+			 </trim>
+		 </trim>
+		 <include refid="_group_by_"/>
+	</select>
+	
+	<!-- 条件映射 -->
+	<sql id="_condition_">
+		<if test="condition != null and !condition.isEmpty()">
+			<!-- 条件映射-普通条件 -->
+			
+			<if test="condition.containsKey('id')">
+				<if test="condition.id != null">
+					and a.id=#{condition.id}
+				</if>
+			</if>
+			<if test="condition.containsKey('id')">
+				<if test="condition.id != null ">
+					and a.id = #{condition.id}
+				</if>
+				<if test="condition.id == null">
+					and a.id is null
+				</if>
+			</if>
+			<if test="condition.containsKey('idList')">
+				 and a.id in 
+				<foreach collection="condition.idList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('idStart') and condition.idStart != null">
+				and a.id <![CDATA[ >= ]]> #{condition.idStart}
+			</if>
+			<if test="condition.containsKey('idEnd') and condition.idEnd != null">
+				and a.id <![CDATA[ <= ]]> #{condition.idEnd}
+			</if>
+			<if test="condition.containsKey('areaId')">
+				<if test="condition.areaId != null ">
+					and a.areaId = #{condition.areaId}
+				</if>
+				<if test="condition.areaId == null">
+					and a.areaId is null
+				</if>
+			</if>
+			<if test="condition.containsKey('areaIdList')">
+				 and a.areaId in 
+				<foreach collection="condition.areaIdList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('areaIdStart') and condition.areaIdStart != null">
+				and a.areaId <![CDATA[ >= ]]> #{condition.areaIdStart}
+			</if>
+			<if test="condition.containsKey('areaIdEnd') and condition.areaIdEnd != null">
+				and a.areaId <![CDATA[ <= ]]> #{condition.areaIdEnd}
+			</if>
+			<if test="condition.containsKey('city')">
+				<if test="condition.city != null and condition.city != ''">
+					and a.city like #{condition.city}
+				</if>
+				<if test="condition.city == null">
+					and a.city is null
+				</if>
+			</if>
+			<if test="condition.containsKey('cityList')">
+				 and a.city in 
+				<foreach collection="condition.cityList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('cityCode')">
+				<if test="condition.cityCode != null and condition.cityCode != ''">
+					and a.cityCode like #{condition.cityCode}
+				</if>
+				<if test="condition.cityCode == null">
+					and a.cityCode is null
+				</if>
+			</if>
+			<if test="condition.containsKey('cityCodeList')">
+				 and a.cityCode in 
+				<foreach collection="condition.cityCodeList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('date')">
+				<if test="condition.date != null ">
+					and a.date = #{condition.date}
+				</if>
+				<if test="condition.date == null">
+					and a.date is null
+				</if>
+			</if>
+			<if test="condition.containsKey('dateList')">
+				 and a.date in 
+				<foreach collection="condition.dateList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('dateStart') and condition.dateStart != null">
+				and a.date <![CDATA[ >= ]]> #{condition.dateStart}
+			</if>
+			<if test="condition.containsKey('dateEnd') and condition.dateEnd != null">
+				and a.date <![CDATA[ <= ]]> #{condition.dateEnd}
+			</if>
+			<if test="condition.containsKey('reportTime')">
+				<if test="condition.reportTime != null and condition.reportTime != ''">
+					and a.reportTime like #{condition.reportTime}
+				</if>
+				<if test="condition.reportTime == null">
+					and a.reportTime is null
+				</if>
+			</if>
+			<if test="condition.containsKey('reportTimeList')">
+				 and a.reportTime in 
+				<foreach collection="condition.reportTimeList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('sunriseTime')">
+				<if test="condition.sunriseTime != null and condition.sunriseTime != ''">
+					and a.sunriseTime like #{condition.sunriseTime}
+				</if>
+				<if test="condition.sunriseTime == null">
+					and a.sunriseTime is null
+				</if>
+			</if>
+			<if test="condition.containsKey('sunriseTimeList')">
+				 and a.sunriseTime in 
+				<foreach collection="condition.sunriseTimeList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('sunsetTime')">
+				<if test="condition.sunsetTime != null and condition.sunsetTime != ''">
+					and a.sunsetTime like #{condition.sunsetTime}
+				</if>
+				<if test="condition.sunsetTime == null">
+					and a.sunsetTime is null
+				</if>
+			</if>
+			<if test="condition.containsKey('sunsetTimeList')">
+				 and a.sunsetTime in 
+				<foreach collection="condition.sunsetTimeList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('weatherType')">
+				<if test="condition.weatherType != null ">
+					and a.weatherType = #{condition.weatherType}
+				</if>
+				<if test="condition.weatherType == null">
+					and a.weatherType is null
+				</if>
+			</if>
+			<if test="condition.containsKey('weatherTypeList')">
+				 and a.weatherType in 
+				<foreach collection="condition.weatherTypeList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('weatherTypeStart') and condition.weatherTypeStart != null">
+				and a.weatherType <![CDATA[ >= ]]> #{condition.weatherTypeStart}
+			</if>
+			<if test="condition.containsKey('weatherTypeEnd') and condition.weatherTypeEnd != null">
+				and a.weatherType <![CDATA[ <= ]]> #{condition.weatherTypeEnd}
+			</if>
+			<if test="condition.containsKey('weatherTypeForNight')">
+				<if test="condition.weatherTypeForNight != null ">
+					and a.weatherTypeForNight = #{condition.weatherTypeForNight}
+				</if>
+				<if test="condition.weatherTypeForNight == null">
+					and a.weatherTypeForNight is null
+				</if>
+			</if>
+			<if test="condition.containsKey('weatherTypeForNightList')">
+				 and a.weatherTypeForNight in 
+				<foreach collection="condition.weatherTypeForNightList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('weatherTypeForNightStart') and condition.weatherTypeForNightStart != null">
+				and a.weatherTypeForNight <![CDATA[ >= ]]> #{condition.weatherTypeForNightStart}
+			</if>
+			<if test="condition.containsKey('weatherTypeForNightEnd') and condition.weatherTypeForNightEnd != null">
+				and a.weatherTypeForNight <![CDATA[ <= ]]> #{condition.weatherTypeForNightEnd}
+			</if>
+			<if test="condition.containsKey('weatherTypeForReal')">
+				<if test="condition.weatherTypeForReal != null ">
+					and a.weatherTypeForReal = #{condition.weatherTypeForReal}
+				</if>
+				<if test="condition.weatherTypeForReal == null">
+					and a.weatherTypeForReal is null
+				</if>
+			</if>
+			<if test="condition.containsKey('weatherTypeForRealList')">
+				 and a.weatherTypeForReal in 
+				<foreach collection="condition.weatherTypeForRealList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('weatherTypeForRealStart') and condition.weatherTypeForRealStart != null">
+				and a.weatherTypeForReal <![CDATA[ >= ]]> #{condition.weatherTypeForRealStart}
+			</if>
+			<if test="condition.containsKey('weatherTypeForRealEnd') and condition.weatherTypeForRealEnd != null">
+				and a.weatherTypeForReal <![CDATA[ <= ]]> #{condition.weatherTypeForRealEnd}
+			</if>
+			<if test="condition.containsKey('weather')">
+				<if test="condition.weather != null and condition.weather != ''">
+					and a.weather like #{condition.weather}
+				</if>
+				<if test="condition.weather == null">
+					and a.weather is null
+				</if>
+			</if>
+			<if test="condition.containsKey('weatherList')">
+				 and a.weather in 
+				<foreach collection="condition.weatherList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('weatherForNight')">
+				<if test="condition.weatherForNight != null and condition.weatherForNight != ''">
+					and a.weatherForNight like #{condition.weatherForNight}
+				</if>
+				<if test="condition.weatherForNight == null">
+					and a.weatherForNight is null
+				</if>
+			</if>
+			<if test="condition.containsKey('weatherForNightList')">
+				 and a.weatherForNight in 
+				<foreach collection="condition.weatherForNightList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('weatherForReal')">
+				<if test="condition.weatherForReal != null and condition.weatherForReal != ''">
+					and a.weatherForReal like #{condition.weatherForReal}
+				</if>
+				<if test="condition.weatherForReal == null">
+					and a.weatherForReal is null
+				</if>
+			</if>
+			<if test="condition.containsKey('weatherForRealList')">
+				 and a.weatherForReal in 
+				<foreach collection="condition.weatherForRealList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('airTemperature')">
+				<if test="condition.airTemperature != null ">
+					and a.airTemperature = #{condition.airTemperature}
+				</if>
+				<if test="condition.airTemperature == null">
+					and a.airTemperature is null
+				</if>
+			</if>
+			<if test="condition.containsKey('airTemperatureList')">
+				 and a.airTemperature in 
+				<foreach collection="condition.airTemperatureList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('airTemperatureStart') and condition.airTemperatureStart != null">
+				and a.airTemperature <![CDATA[ >= ]]> #{condition.airTemperatureStart}
+			</if>
+			<if test="condition.containsKey('airTemperatureEnd') and condition.airTemperatureEnd != null">
+				and a.airTemperature <![CDATA[ <= ]]> #{condition.airTemperatureEnd}
+			</if>
+			<if test="condition.containsKey('airTemperatureForNight')">
+				<if test="condition.airTemperatureForNight != null ">
+					and a.airTemperatureForNight = #{condition.airTemperatureForNight}
+				</if>
+				<if test="condition.airTemperatureForNight == null">
+					and a.airTemperatureForNight is null
+				</if>
+			</if>
+			<if test="condition.containsKey('airTemperatureForNightList')">
+				 and a.airTemperatureForNight in 
+				<foreach collection="condition.airTemperatureForNightList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('airTemperatureForNightStart') and condition.airTemperatureForNightStart != null">
+				and a.airTemperatureForNight <![CDATA[ >= ]]> #{condition.airTemperatureForNightStart}
+			</if>
+			<if test="condition.containsKey('airTemperatureForNightEnd') and condition.airTemperatureForNightEnd != null">
+				and a.airTemperatureForNight <![CDATA[ <= ]]> #{condition.airTemperatureForNightEnd}
+			</if>
+			<if test="condition.containsKey('airTemperatureForReal')">
+				<if test="condition.airTemperatureForReal != null ">
+					and a.airTemperatureForReal = #{condition.airTemperatureForReal}
+				</if>
+				<if test="condition.airTemperatureForReal == null">
+					and a.airTemperatureForReal is null
+				</if>
+			</if>
+			<if test="condition.containsKey('airTemperatureForRealList')">
+				 and a.airTemperatureForReal in 
+				<foreach collection="condition.airTemperatureForRealList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('airTemperatureForRealStart') and condition.airTemperatureForRealStart != null">
+				and a.airTemperatureForReal <![CDATA[ >= ]]> #{condition.airTemperatureForRealStart}
+			</if>
+			<if test="condition.containsKey('airTemperatureForRealEnd') and condition.airTemperatureForRealEnd != null">
+				and a.airTemperatureForReal <![CDATA[ <= ]]> #{condition.airTemperatureForRealEnd}
+			</if>
+			<if test="condition.containsKey('airHumidity')">
+				<if test="condition.airHumidity != null ">
+					and a.airHumidity = #{condition.airHumidity}
+				</if>
+				<if test="condition.airHumidity == null">
+					and a.airHumidity is null
+				</if>
+			</if>
+			<if test="condition.containsKey('airHumidityList')">
+				 and a.airHumidity in 
+				<foreach collection="condition.airHumidityList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('airHumidityStart') and condition.airHumidityStart != null">
+				and a.airHumidity <![CDATA[ >= ]]> #{condition.airHumidityStart}
+			</if>
+			<if test="condition.containsKey('airHumidityEnd') and condition.airHumidityEnd != null">
+				and a.airHumidity <![CDATA[ <= ]]> #{condition.airHumidityEnd}
+			</if>
+			<if test="condition.containsKey('airHumidityForReal')">
+				<if test="condition.airHumidityForReal != null ">
+					and a.airHumidityForReal = #{condition.airHumidityForReal}
+				</if>
+				<if test="condition.airHumidityForReal == null">
+					and a.airHumidityForReal is null
+				</if>
+			</if>
+			<if test="condition.containsKey('airHumidityForRealList')">
+				 and a.airHumidityForReal in 
+				<foreach collection="condition.airHumidityForRealList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('airHumidityForRealStart') and condition.airHumidityForRealStart != null">
+				and a.airHumidityForReal <![CDATA[ >= ]]> #{condition.airHumidityForRealStart}
+			</if>
+			<if test="condition.containsKey('airHumidityForRealEnd') and condition.airHumidityForRealEnd != null">
+				and a.airHumidityForReal <![CDATA[ <= ]]> #{condition.airHumidityForRealEnd}
+			</if>
+			<if test="condition.containsKey('airQuality')">
+				<if test="condition.airQuality != null and condition.airQuality != ''">
+					and a.airQuality like #{condition.airQuality}
+				</if>
+				<if test="condition.airQuality == null">
+					and a.airQuality is null
+				</if>
+			</if>
+			<if test="condition.containsKey('airQualityList')">
+				 and a.airQuality in 
+				<foreach collection="condition.airQualityList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('airQI')">
+				<if test="condition.airQI != null ">
+					and a.airQI = #{condition.airQI}
+				</if>
+				<if test="condition.airQI == null">
+					and a.airQI is null
+				</if>
+			</if>
+			<if test="condition.containsKey('airQIList')">
+				 and a.airQI in 
+				<foreach collection="condition.airQIList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('airQIStart') and condition.airQIStart != null">
+				and a.airQI <![CDATA[ >= ]]> #{condition.airQIStart}
+			</if>
+			<if test="condition.containsKey('airQIEnd') and condition.airQIEnd != null">
+				and a.airQI <![CDATA[ <= ]]> #{condition.airQIEnd}
+			</if>
+			<if test="condition.containsKey('airMaxTemperature')">
+				<if test="condition.airMaxTemperature != null ">
+					and a.airMaxTemperature = #{condition.airMaxTemperature}
+				</if>
+				<if test="condition.airMaxTemperature == null">
+					and a.airMaxTemperature is null
+				</if>
+			</if>
+			<if test="condition.containsKey('airMaxTemperatureList')">
+				 and a.airMaxTemperature in 
+				<foreach collection="condition.airMaxTemperatureList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('airMaxTemperatureStart') and condition.airMaxTemperatureStart != null">
+				and a.airMaxTemperature <![CDATA[ >= ]]> #{condition.airMaxTemperatureStart}
+			</if>
+			<if test="condition.containsKey('airMaxTemperatureEnd') and condition.airMaxTemperatureEnd != null">
+				and a.airMaxTemperature <![CDATA[ <= ]]> #{condition.airMaxTemperatureEnd}
+			</if>
+			<if test="condition.containsKey('airMinTemperature')">
+				<if test="condition.airMinTemperature != null ">
+					and a.airMinTemperature = #{condition.airMinTemperature}
+				</if>
+				<if test="condition.airMinTemperature == null">
+					and a.airMinTemperature is null
+				</if>
+			</if>
+			<if test="condition.containsKey('airMinTemperatureList')">
+				 and a.airMinTemperature in 
+				<foreach collection="condition.airMinTemperatureList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('airMinTemperatureStart') and condition.airMinTemperatureStart != null">
+				and a.airMinTemperature <![CDATA[ >= ]]> #{condition.airMinTemperatureStart}
+			</if>
+			<if test="condition.containsKey('airMinTemperatureEnd') and condition.airMinTemperatureEnd != null">
+				and a.airMinTemperature <![CDATA[ <= ]]> #{condition.airMinTemperatureEnd}
+			</if>
+			<if test="condition.containsKey('airPM25Value')">
+				<if test="condition.airPM25Value != null ">
+					and a.airPM25Value = #{condition.airPM25Value}
+				</if>
+				<if test="condition.airPM25Value == null">
+					and a.airPM25Value is null
+				</if>
+			</if>
+			<if test="condition.containsKey('airPM25ValueList')">
+				 and a.airPM25Value in 
+				<foreach collection="condition.airPM25ValueList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('airPM25ValueStart') and condition.airPM25ValueStart != null">
+				and a.airPM25Value <![CDATA[ >= ]]> #{condition.airPM25ValueStart}
+			</if>
+			<if test="condition.containsKey('airPM25ValueEnd') and condition.airPM25ValueEnd != null">
+				and a.airPM25Value <![CDATA[ <= ]]> #{condition.airPM25ValueEnd}
+			</if>
+			<if test="condition.containsKey('airPM10Value')">
+				<if test="condition.airPM10Value != null ">
+					and a.airPM10Value = #{condition.airPM10Value}
+				</if>
+				<if test="condition.airPM10Value == null">
+					and a.airPM10Value is null
+				</if>
+			</if>
+			<if test="condition.containsKey('airPM10ValueList')">
+				 and a.airPM10Value in 
+				<foreach collection="condition.airPM10ValueList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('airPM10ValueStart') and condition.airPM10ValueStart != null">
+				and a.airPM10Value <![CDATA[ >= ]]> #{condition.airPM10ValueStart}
+			</if>
+			<if test="condition.containsKey('airPM10ValueEnd') and condition.airPM10ValueEnd != null">
+				and a.airPM10Value <![CDATA[ <= ]]> #{condition.airPM10ValueEnd}
+			</if>
+			<if test="condition.containsKey('windDirection')">
+				<if test="condition.windDirection != null and condition.windDirection != ''">
+					and a.windDirection like #{condition.windDirection}
+				</if>
+				<if test="condition.windDirection == null">
+					and a.windDirection is null
+				</if>
+			</if>
+			<if test="condition.containsKey('windDirectionList')">
+				 and a.windDirection in 
+				<foreach collection="condition.windDirectionList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('windDirectionForNight')">
+				<if test="condition.windDirectionForNight != null and condition.windDirectionForNight != ''">
+					and a.windDirectionForNight like #{condition.windDirectionForNight}
+				</if>
+				<if test="condition.windDirectionForNight == null">
+					and a.windDirectionForNight is null
+				</if>
+			</if>
+			<if test="condition.containsKey('windDirectionForNightList')">
+				 and a.windDirectionForNight in 
+				<foreach collection="condition.windDirectionForNightList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('windDirectionForReal')">
+				<if test="condition.windDirectionForReal != null and condition.windDirectionForReal != ''">
+					and a.windDirectionForReal like #{condition.windDirectionForReal}
+				</if>
+				<if test="condition.windDirectionForReal == null">
+					and a.windDirectionForReal is null
+				</if>
+			</if>
+			<if test="condition.containsKey('windDirectionForRealList')">
+				 and a.windDirectionForReal in 
+				<foreach collection="condition.windDirectionForRealList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('windPower')">
+				<if test="condition.windPower != null and condition.windPower != ''">
+					and a.windPower like #{condition.windPower}
+				</if>
+				<if test="condition.windPower == null">
+					and a.windPower is null
+				</if>
+			</if>
+			<if test="condition.containsKey('windPowerList')">
+				 and a.windPower in 
+				<foreach collection="condition.windPowerList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('windPowerForNight')">
+				<if test="condition.windPowerForNight != null and condition.windPowerForNight != ''">
+					and a.windPowerForNight like #{condition.windPowerForNight}
+				</if>
+				<if test="condition.windPowerForNight == null">
+					and a.windPowerForNight is null
+				</if>
+			</if>
+			<if test="condition.containsKey('windPowerForNightList')">
+				 and a.windPowerForNight in 
+				<foreach collection="condition.windPowerForNightList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('windPowerForReal')">
+				<if test="condition.windPowerForReal != null and condition.windPowerForReal != ''">
+					and a.windPowerForReal like #{condition.windPowerForReal}
+				</if>
+				<if test="condition.windPowerForReal == null">
+					and a.windPowerForReal is null
+				</if>
+			</if>
+			<if test="condition.containsKey('windPowerForRealList')">
+				 and a.windPowerForReal in 
+				<foreach collection="condition.windPowerForRealList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('barometric')">
+				<if test="condition.barometric != null ">
+					and a.barometric = #{condition.barometric}
+				</if>
+				<if test="condition.barometric == null">
+					and a.barometric is null
+				</if>
+			</if>
+			<if test="condition.containsKey('barometricList')">
+				 and a.barometric in 
+				<foreach collection="condition.barometricList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('barometricStart') and condition.barometricStart != null">
+				and a.barometric <![CDATA[ >= ]]> #{condition.barometricStart}
+			</if>
+			<if test="condition.containsKey('barometricEnd') and condition.barometricEnd != null">
+				and a.barometric <![CDATA[ <= ]]> #{condition.barometricEnd}
+			</if>
+			<if test="condition.containsKey('ultravioletRays')">
+				<if test="condition.ultravioletRays != null ">
+					and a.ultravioletRays = #{condition.ultravioletRays}
+				</if>
+				<if test="condition.ultravioletRays == null">
+					and a.ultravioletRays is null
+				</if>
+			</if>
+			<if test="condition.containsKey('ultravioletRaysList')">
+				 and a.ultravioletRays in 
+				<foreach collection="condition.ultravioletRaysList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('ultravioletRaysStart') and condition.ultravioletRaysStart != null">
+				and a.ultravioletRays <![CDATA[ >= ]]> #{condition.ultravioletRaysStart}
+			</if>
+			<if test="condition.containsKey('ultravioletRaysEnd') and condition.ultravioletRaysEnd != null">
+				and a.ultravioletRays <![CDATA[ <= ]]> #{condition.ultravioletRaysEnd}
+			</if>
+			<if test="condition.containsKey('ultraVioletIndex')">
+				<if test="condition.ultraVioletIndex != null ">
+					and a.ultraVioletIndex = #{condition.ultraVioletIndex}
+				</if>
+				<if test="condition.ultraVioletIndex == null">
+					and a.ultraVioletIndex is null
+				</if>
+			</if>
+			<if test="condition.containsKey('ultraVioletIndexList')">
+				 and a.ultraVioletIndex in 
+				<foreach collection="condition.ultraVioletIndexList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('ultraVioletIndexStart') and condition.ultraVioletIndexStart != null">
+				and a.ultraVioletIndex <![CDATA[ >= ]]> #{condition.ultraVioletIndexStart}
+			</if>
+			<if test="condition.containsKey('ultraVioletIndexEnd') and condition.ultraVioletIndexEnd != null">
+				and a.ultraVioletIndex <![CDATA[ <= ]]> #{condition.ultraVioletIndexEnd}
+			</if>
+			<if test="condition.containsKey('remark')">
+				<if test="condition.remark != null and condition.remark != ''">
+					and a.remark like #{condition.remark}
+				</if>
+				<if test="condition.remark == null">
+					and a.remark is null
+				</if>
+			</if>
+			<if test="condition.containsKey('remarkList')">
+				 and a.remark in 
+				<foreach collection="condition.remarkList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('ext')">
+				<if test="condition.ext != null and condition.ext != ''">
+					and a.ext like #{condition.ext}
+				</if>
+				<if test="condition.ext == null">
+					and a.ext is null
+				</if>
+			</if>
+			<if test="condition.containsKey('extList')">
+				 and a.ext in 
+				<foreach collection="condition.extList" open="(" close=")" index="index" item="item" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="condition.containsKey('lastSyncTime')">
+				<if test="condition.lastSyncTime != null ">
+					and a.lastSyncTime = #{condition.lastSyncTime}
+				</if>
+				<if test="condition.lastSyncTime == null">
+					and a.lastSyncTime is null
+				</if>
+			</if>
+			<if test="condition.containsKey('lastSyncTimeStart') and condition.lastSyncTimeStart != null and condition.lastSyncTimeStart!=''">
+				and a.lastSyncTime <![CDATA[ >= ]]> STR_TO_DATE(left(concat(#{condition.lastSyncTimeStart},' 00:00:00'),19),'%Y-%m-%d %k:%i:%s')
+			</if>
+			<if test="condition.containsKey('lastSyncTimeEnd') and condition.lastSyncTimeEnd != null and condition.lastSyncTimeEnd!=''">
+				and a.lastSyncTime <![CDATA[ <= ]]> STR_TO_DATE(left(concat(#{condition.lastSyncTimeEnd},' 23:59:59'),19),'%Y-%m-%d %k:%i:%s')
+			</if>
+			<!-- 条件映射-集合之间使用AND，集合中元素使用OR-(list[0].1 or list[0].2) and (list[1].3 or list[1].4) -->
+			<if test="condition.containsKey('andConditionList') and !condition.andConditionList.isEmpty()">
+				and
+				<foreach collection="condition.andConditionList" open="(" close=")" index="index" item="andCondition" separator=" and ">
+					<trim prefixOverrides="or" prefix="(" suffix=")">
+						
+						<if test="andCondition.containsKey('id')">
+							<if test="andCondition.id != null">
+								or a.id=#{andCondition.id}
+							</if>
+						</if>
+						<if test="andCondition.containsKey('id')">
+							<if test="andCondition.id != null ">
+								or a.id = #{andCondition.id}
+							</if>
+							<if test="andCondition.id == null">
+								or a.id is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('idList')">
+							 or a.id in 
+							<foreach collection="andCondition.idList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('idStart') and andCondition.idStart != null">
+							or a.id <![CDATA[ >= ]]> #{andCondition.idStart}
+						</if>
+						<if test="andCondition.containsKey('idEnd') and andCondition.idEnd != null">
+							or a.id <![CDATA[ <= ]]> #{andCondition.idEnd}
+						</if>
+						<if test="andCondition.containsKey('areaId')">
+							<if test="andCondition.areaId != null ">
+								or a.areaId = #{andCondition.areaId}
+							</if>
+							<if test="andCondition.areaId == null">
+								or a.areaId is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('areaIdList')">
+							 or a.areaId in 
+							<foreach collection="andCondition.areaIdList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('areaIdStart') and andCondition.areaIdStart != null">
+							or a.areaId <![CDATA[ >= ]]> #{andCondition.areaIdStart}
+						</if>
+						<if test="andCondition.containsKey('areaIdEnd') and andCondition.areaIdEnd != null">
+							or a.areaId <![CDATA[ <= ]]> #{andCondition.areaIdEnd}
+						</if>
+						<if test="andCondition.containsKey('city')">
+							<if test="andCondition.city != null and andCondition.city != ''">
+								or a.city like #{andCondition.city}
+							</if>
+							<if test="andCondition.city == null">
+								or a.city is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('cityList')">
+							 or a.city in 
+							<foreach collection="andCondition.cityList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('cityCode')">
+							<if test="andCondition.cityCode != null and andCondition.cityCode != ''">
+								or a.cityCode like #{andCondition.cityCode}
+							</if>
+							<if test="andCondition.cityCode == null">
+								or a.cityCode is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('cityCodeList')">
+							 or a.cityCode in 
+							<foreach collection="andCondition.cityCodeList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('date')">
+							<if test="andCondition.date != null ">
+								or a.date = #{andCondition.date}
+							</if>
+							<if test="andCondition.date == null">
+								or a.date is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('dateList')">
+							 or a.date in 
+							<foreach collection="andCondition.dateList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('dateStart') and andCondition.dateStart != null">
+							or a.date <![CDATA[ >= ]]> #{andCondition.dateStart}
+						</if>
+						<if test="andCondition.containsKey('dateEnd') and andCondition.dateEnd != null">
+							or a.date <![CDATA[ <= ]]> #{andCondition.dateEnd}
+						</if>
+						<if test="andCondition.containsKey('reportTime')">
+							<if test="andCondition.reportTime != null and andCondition.reportTime != ''">
+								or a.reportTime like #{andCondition.reportTime}
+							</if>
+							<if test="andCondition.reportTime == null">
+								or a.reportTime is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('reportTimeList')">
+							 or a.reportTime in 
+							<foreach collection="andCondition.reportTimeList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('sunriseTime')">
+							<if test="andCondition.sunriseTime != null and andCondition.sunriseTime != ''">
+								or a.sunriseTime like #{andCondition.sunriseTime}
+							</if>
+							<if test="andCondition.sunriseTime == null">
+								or a.sunriseTime is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('sunriseTimeList')">
+							 or a.sunriseTime in 
+							<foreach collection="andCondition.sunriseTimeList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('sunsetTime')">
+							<if test="andCondition.sunsetTime != null and andCondition.sunsetTime != ''">
+								or a.sunsetTime like #{andCondition.sunsetTime}
+							</if>
+							<if test="andCondition.sunsetTime == null">
+								or a.sunsetTime is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('sunsetTimeList')">
+							 or a.sunsetTime in 
+							<foreach collection="andCondition.sunsetTimeList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('weatherType')">
+							<if test="andCondition.weatherType != null ">
+								or a.weatherType = #{andCondition.weatherType}
+							</if>
+							<if test="andCondition.weatherType == null">
+								or a.weatherType is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('weatherTypeList')">
+							 or a.weatherType in 
+							<foreach collection="andCondition.weatherTypeList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('weatherTypeStart') and andCondition.weatherTypeStart != null">
+							or a.weatherType <![CDATA[ >= ]]> #{andCondition.weatherTypeStart}
+						</if>
+						<if test="andCondition.containsKey('weatherTypeEnd') and andCondition.weatherTypeEnd != null">
+							or a.weatherType <![CDATA[ <= ]]> #{andCondition.weatherTypeEnd}
+						</if>
+						<if test="andCondition.containsKey('weatherTypeForNight')">
+							<if test="andCondition.weatherTypeForNight != null ">
+								or a.weatherTypeForNight = #{andCondition.weatherTypeForNight}
+							</if>
+							<if test="andCondition.weatherTypeForNight == null">
+								or a.weatherTypeForNight is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('weatherTypeForNightList')">
+							 or a.weatherTypeForNight in 
+							<foreach collection="andCondition.weatherTypeForNightList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('weatherTypeForNightStart') and andCondition.weatherTypeForNightStart != null">
+							or a.weatherTypeForNight <![CDATA[ >= ]]> #{andCondition.weatherTypeForNightStart}
+						</if>
+						<if test="andCondition.containsKey('weatherTypeForNightEnd') and andCondition.weatherTypeForNightEnd != null">
+							or a.weatherTypeForNight <![CDATA[ <= ]]> #{andCondition.weatherTypeForNightEnd}
+						</if>
+						<if test="andCondition.containsKey('weatherTypeForReal')">
+							<if test="andCondition.weatherTypeForReal != null ">
+								or a.weatherTypeForReal = #{andCondition.weatherTypeForReal}
+							</if>
+							<if test="andCondition.weatherTypeForReal == null">
+								or a.weatherTypeForReal is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('weatherTypeForRealList')">
+							 or a.weatherTypeForReal in 
+							<foreach collection="andCondition.weatherTypeForRealList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('weatherTypeForRealStart') and andCondition.weatherTypeForRealStart != null">
+							or a.weatherTypeForReal <![CDATA[ >= ]]> #{andCondition.weatherTypeForRealStart}
+						</if>
+						<if test="andCondition.containsKey('weatherTypeForRealEnd') and andCondition.weatherTypeForRealEnd != null">
+							or a.weatherTypeForReal <![CDATA[ <= ]]> #{andCondition.weatherTypeForRealEnd}
+						</if>
+						<if test="andCondition.containsKey('weather')">
+							<if test="andCondition.weather != null and andCondition.weather != ''">
+								or a.weather like #{andCondition.weather}
+							</if>
+							<if test="andCondition.weather == null">
+								or a.weather is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('weatherList')">
+							 or a.weather in 
+							<foreach collection="andCondition.weatherList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('weatherForNight')">
+							<if test="andCondition.weatherForNight != null and andCondition.weatherForNight != ''">
+								or a.weatherForNight like #{andCondition.weatherForNight}
+							</if>
+							<if test="andCondition.weatherForNight == null">
+								or a.weatherForNight is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('weatherForNightList')">
+							 or a.weatherForNight in 
+							<foreach collection="andCondition.weatherForNightList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('weatherForReal')">
+							<if test="andCondition.weatherForReal != null and andCondition.weatherForReal != ''">
+								or a.weatherForReal like #{andCondition.weatherForReal}
+							</if>
+							<if test="andCondition.weatherForReal == null">
+								or a.weatherForReal is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('weatherForRealList')">
+							 or a.weatherForReal in 
+							<foreach collection="andCondition.weatherForRealList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('airTemperature')">
+							<if test="andCondition.airTemperature != null ">
+								or a.airTemperature = #{andCondition.airTemperature}
+							</if>
+							<if test="andCondition.airTemperature == null">
+								or a.airTemperature is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('airTemperatureList')">
+							 or a.airTemperature in 
+							<foreach collection="andCondition.airTemperatureList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('airTemperatureStart') and andCondition.airTemperatureStart != null">
+							or a.airTemperature <![CDATA[ >= ]]> #{andCondition.airTemperatureStart}
+						</if>
+						<if test="andCondition.containsKey('airTemperatureEnd') and andCondition.airTemperatureEnd != null">
+							or a.airTemperature <![CDATA[ <= ]]> #{andCondition.airTemperatureEnd}
+						</if>
+						<if test="andCondition.containsKey('airTemperatureForNight')">
+							<if test="andCondition.airTemperatureForNight != null ">
+								or a.airTemperatureForNight = #{andCondition.airTemperatureForNight}
+							</if>
+							<if test="andCondition.airTemperatureForNight == null">
+								or a.airTemperatureForNight is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('airTemperatureForNightList')">
+							 or a.airTemperatureForNight in 
+							<foreach collection="andCondition.airTemperatureForNightList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('airTemperatureForNightStart') and andCondition.airTemperatureForNightStart != null">
+							or a.airTemperatureForNight <![CDATA[ >= ]]> #{andCondition.airTemperatureForNightStart}
+						</if>
+						<if test="andCondition.containsKey('airTemperatureForNightEnd') and andCondition.airTemperatureForNightEnd != null">
+							or a.airTemperatureForNight <![CDATA[ <= ]]> #{andCondition.airTemperatureForNightEnd}
+						</if>
+						<if test="andCondition.containsKey('airTemperatureForReal')">
+							<if test="andCondition.airTemperatureForReal != null ">
+								or a.airTemperatureForReal = #{andCondition.airTemperatureForReal}
+							</if>
+							<if test="andCondition.airTemperatureForReal == null">
+								or a.airTemperatureForReal is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('airTemperatureForRealList')">
+							 or a.airTemperatureForReal in 
+							<foreach collection="andCondition.airTemperatureForRealList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('airTemperatureForRealStart') and andCondition.airTemperatureForRealStart != null">
+							or a.airTemperatureForReal <![CDATA[ >= ]]> #{andCondition.airTemperatureForRealStart}
+						</if>
+						<if test="andCondition.containsKey('airTemperatureForRealEnd') and andCondition.airTemperatureForRealEnd != null">
+							or a.airTemperatureForReal <![CDATA[ <= ]]> #{andCondition.airTemperatureForRealEnd}
+						</if>
+						<if test="andCondition.containsKey('airHumidity')">
+							<if test="andCondition.airHumidity != null ">
+								or a.airHumidity = #{andCondition.airHumidity}
+							</if>
+							<if test="andCondition.airHumidity == null">
+								or a.airHumidity is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('airHumidityList')">
+							 or a.airHumidity in 
+							<foreach collection="andCondition.airHumidityList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('airHumidityStart') and andCondition.airHumidityStart != null">
+							or a.airHumidity <![CDATA[ >= ]]> #{andCondition.airHumidityStart}
+						</if>
+						<if test="andCondition.containsKey('airHumidityEnd') and andCondition.airHumidityEnd != null">
+							or a.airHumidity <![CDATA[ <= ]]> #{andCondition.airHumidityEnd}
+						</if>
+						<if test="andCondition.containsKey('airHumidityForReal')">
+							<if test="andCondition.airHumidityForReal != null ">
+								or a.airHumidityForReal = #{andCondition.airHumidityForReal}
+							</if>
+							<if test="andCondition.airHumidityForReal == null">
+								or a.airHumidityForReal is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('airHumidityForRealList')">
+							 or a.airHumidityForReal in 
+							<foreach collection="andCondition.airHumidityForRealList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('airHumidityForRealStart') and andCondition.airHumidityForRealStart != null">
+							or a.airHumidityForReal <![CDATA[ >= ]]> #{andCondition.airHumidityForRealStart}
+						</if>
+						<if test="andCondition.containsKey('airHumidityForRealEnd') and andCondition.airHumidityForRealEnd != null">
+							or a.airHumidityForReal <![CDATA[ <= ]]> #{andCondition.airHumidityForRealEnd}
+						</if>
+						<if test="andCondition.containsKey('airQuality')">
+							<if test="andCondition.airQuality != null and andCondition.airQuality != ''">
+								or a.airQuality like #{andCondition.airQuality}
+							</if>
+							<if test="andCondition.airQuality == null">
+								or a.airQuality is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('airQualityList')">
+							 or a.airQuality in 
+							<foreach collection="andCondition.airQualityList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('airQI')">
+							<if test="andCondition.airQI != null ">
+								or a.airQI = #{andCondition.airQI}
+							</if>
+							<if test="andCondition.airQI == null">
+								or a.airQI is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('airQIList')">
+							 or a.airQI in 
+							<foreach collection="andCondition.airQIList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('airQIStart') and andCondition.airQIStart != null">
+							or a.airQI <![CDATA[ >= ]]> #{andCondition.airQIStart}
+						</if>
+						<if test="andCondition.containsKey('airQIEnd') and andCondition.airQIEnd != null">
+							or a.airQI <![CDATA[ <= ]]> #{andCondition.airQIEnd}
+						</if>
+						<if test="andCondition.containsKey('airMaxTemperature')">
+							<if test="andCondition.airMaxTemperature != null ">
+								or a.airMaxTemperature = #{andCondition.airMaxTemperature}
+							</if>
+							<if test="andCondition.airMaxTemperature == null">
+								or a.airMaxTemperature is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('airMaxTemperatureList')">
+							 or a.airMaxTemperature in 
+							<foreach collection="andCondition.airMaxTemperatureList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('airMaxTemperatureStart') and andCondition.airMaxTemperatureStart != null">
+							or a.airMaxTemperature <![CDATA[ >= ]]> #{andCondition.airMaxTemperatureStart}
+						</if>
+						<if test="andCondition.containsKey('airMaxTemperatureEnd') and andCondition.airMaxTemperatureEnd != null">
+							or a.airMaxTemperature <![CDATA[ <= ]]> #{andCondition.airMaxTemperatureEnd}
+						</if>
+						<if test="andCondition.containsKey('airMinTemperature')">
+							<if test="andCondition.airMinTemperature != null ">
+								or a.airMinTemperature = #{andCondition.airMinTemperature}
+							</if>
+							<if test="andCondition.airMinTemperature == null">
+								or a.airMinTemperature is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('airMinTemperatureList')">
+							 or a.airMinTemperature in 
+							<foreach collection="andCondition.airMinTemperatureList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('airMinTemperatureStart') and andCondition.airMinTemperatureStart != null">
+							or a.airMinTemperature <![CDATA[ >= ]]> #{andCondition.airMinTemperatureStart}
+						</if>
+						<if test="andCondition.containsKey('airMinTemperatureEnd') and andCondition.airMinTemperatureEnd != null">
+							or a.airMinTemperature <![CDATA[ <= ]]> #{andCondition.airMinTemperatureEnd}
+						</if>
+						<if test="andCondition.containsKey('airPM25Value')">
+							<if test="andCondition.airPM25Value != null ">
+								or a.airPM25Value = #{andCondition.airPM25Value}
+							</if>
+							<if test="andCondition.airPM25Value == null">
+								or a.airPM25Value is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('airPM25ValueList')">
+							 or a.airPM25Value in 
+							<foreach collection="andCondition.airPM25ValueList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('airPM25ValueStart') and andCondition.airPM25ValueStart != null">
+							or a.airPM25Value <![CDATA[ >= ]]> #{andCondition.airPM25ValueStart}
+						</if>
+						<if test="andCondition.containsKey('airPM25ValueEnd') and andCondition.airPM25ValueEnd != null">
+							or a.airPM25Value <![CDATA[ <= ]]> #{andCondition.airPM25ValueEnd}
+						</if>
+						<if test="andCondition.containsKey('airPM10Value')">
+							<if test="andCondition.airPM10Value != null ">
+								or a.airPM10Value = #{andCondition.airPM10Value}
+							</if>
+							<if test="andCondition.airPM10Value == null">
+								or a.airPM10Value is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('airPM10ValueList')">
+							 or a.airPM10Value in 
+							<foreach collection="andCondition.airPM10ValueList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('airPM10ValueStart') and andCondition.airPM10ValueStart != null">
+							or a.airPM10Value <![CDATA[ >= ]]> #{andCondition.airPM10ValueStart}
+						</if>
+						<if test="andCondition.containsKey('airPM10ValueEnd') and andCondition.airPM10ValueEnd != null">
+							or a.airPM10Value <![CDATA[ <= ]]> #{andCondition.airPM10ValueEnd}
+						</if>
+						<if test="andCondition.containsKey('windDirection')">
+							<if test="andCondition.windDirection != null and andCondition.windDirection != ''">
+								or a.windDirection like #{andCondition.windDirection}
+							</if>
+							<if test="andCondition.windDirection == null">
+								or a.windDirection is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('windDirectionList')">
+							 or a.windDirection in 
+							<foreach collection="andCondition.windDirectionList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('windDirectionForNight')">
+							<if test="andCondition.windDirectionForNight != null and andCondition.windDirectionForNight != ''">
+								or a.windDirectionForNight like #{andCondition.windDirectionForNight}
+							</if>
+							<if test="andCondition.windDirectionForNight == null">
+								or a.windDirectionForNight is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('windDirectionForNightList')">
+							 or a.windDirectionForNight in 
+							<foreach collection="andCondition.windDirectionForNightList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('windDirectionForReal')">
+							<if test="andCondition.windDirectionForReal != null and andCondition.windDirectionForReal != ''">
+								or a.windDirectionForReal like #{andCondition.windDirectionForReal}
+							</if>
+							<if test="andCondition.windDirectionForReal == null">
+								or a.windDirectionForReal is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('windDirectionForRealList')">
+							 or a.windDirectionForReal in 
+							<foreach collection="andCondition.windDirectionForRealList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('windPower')">
+							<if test="andCondition.windPower != null and andCondition.windPower != ''">
+								or a.windPower like #{andCondition.windPower}
+							</if>
+							<if test="andCondition.windPower == null">
+								or a.windPower is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('windPowerList')">
+							 or a.windPower in 
+							<foreach collection="andCondition.windPowerList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('windPowerForNight')">
+							<if test="andCondition.windPowerForNight != null and andCondition.windPowerForNight != ''">
+								or a.windPowerForNight like #{andCondition.windPowerForNight}
+							</if>
+							<if test="andCondition.windPowerForNight == null">
+								or a.windPowerForNight is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('windPowerForNightList')">
+							 or a.windPowerForNight in 
+							<foreach collection="andCondition.windPowerForNightList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('windPowerForReal')">
+							<if test="andCondition.windPowerForReal != null and andCondition.windPowerForReal != ''">
+								or a.windPowerForReal like #{andCondition.windPowerForReal}
+							</if>
+							<if test="andCondition.windPowerForReal == null">
+								or a.windPowerForReal is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('windPowerForRealList')">
+							 or a.windPowerForReal in 
+							<foreach collection="andCondition.windPowerForRealList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('barometric')">
+							<if test="andCondition.barometric != null ">
+								or a.barometric = #{andCondition.barometric}
+							</if>
+							<if test="andCondition.barometric == null">
+								or a.barometric is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('barometricList')">
+							 or a.barometric in 
+							<foreach collection="andCondition.barometricList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('barometricStart') and andCondition.barometricStart != null">
+							or a.barometric <![CDATA[ >= ]]> #{andCondition.barometricStart}
+						</if>
+						<if test="andCondition.containsKey('barometricEnd') and andCondition.barometricEnd != null">
+							or a.barometric <![CDATA[ <= ]]> #{andCondition.barometricEnd}
+						</if>
+						<if test="andCondition.containsKey('ultravioletRays')">
+							<if test="andCondition.ultravioletRays != null ">
+								or a.ultravioletRays = #{andCondition.ultravioletRays}
+							</if>
+							<if test="andCondition.ultravioletRays == null">
+								or a.ultravioletRays is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('ultravioletRaysList')">
+							 or a.ultravioletRays in 
+							<foreach collection="andCondition.ultravioletRaysList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('ultravioletRaysStart') and andCondition.ultravioletRaysStart != null">
+							or a.ultravioletRays <![CDATA[ >= ]]> #{andCondition.ultravioletRaysStart}
+						</if>
+						<if test="andCondition.containsKey('ultravioletRaysEnd') and andCondition.ultravioletRaysEnd != null">
+							or a.ultravioletRays <![CDATA[ <= ]]> #{andCondition.ultravioletRaysEnd}
+						</if>
+						<if test="andCondition.containsKey('ultraVioletIndex')">
+							<if test="andCondition.ultraVioletIndex != null ">
+								or a.ultraVioletIndex = #{andCondition.ultraVioletIndex}
+							</if>
+							<if test="andCondition.ultraVioletIndex == null">
+								or a.ultraVioletIndex is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('ultraVioletIndexList')">
+							 or a.ultraVioletIndex in 
+							<foreach collection="andCondition.ultraVioletIndexList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('ultraVioletIndexStart') and andCondition.ultraVioletIndexStart != null">
+							or a.ultraVioletIndex <![CDATA[ >= ]]> #{andCondition.ultraVioletIndexStart}
+						</if>
+						<if test="andCondition.containsKey('ultraVioletIndexEnd') and andCondition.ultraVioletIndexEnd != null">
+							or a.ultraVioletIndex <![CDATA[ <= ]]> #{andCondition.ultraVioletIndexEnd}
+						</if>
+						<if test="andCondition.containsKey('remark')">
+							<if test="andCondition.remark != null and andCondition.remark != ''">
+								or a.remark like #{andCondition.remark}
+							</if>
+							<if test="andCondition.remark == null">
+								or a.remark is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('remarkList')">
+							 or a.remark in 
+							<foreach collection="andCondition.remarkList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('ext')">
+							<if test="andCondition.ext != null and andCondition.ext != ''">
+								or a.ext like #{andCondition.ext}
+							</if>
+							<if test="andCondition.ext == null">
+								or a.ext is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('extList')">
+							 or a.ext in 
+							<foreach collection="andCondition.extList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="andCondition.containsKey('lastSyncTime')">
+							<if test="andCondition.lastSyncTime != null ">
+								or a.lastSyncTime = #{andCondition.lastSyncTime}
+							</if>
+							<if test="andCondition.lastSyncTime == null">
+								or a.lastSyncTime is null
+							</if>
+						</if>
+						<if test="andCondition.containsKey('lastSyncTimeStart') and andCondition.lastSyncTimeStart != null and andCondition.lastSyncTimeStart!=''">
+							or a.lastSyncTime <![CDATA[ >= ]]> STR_TO_DATE(left(concat(#{andCondition.lastSyncTimeStart},' 00:00:00'),19),'%Y-%m-%d %k:%i:%s')
+						</if>
+						<if test="andCondition.containsKey('lastSyncTimeEnd') and andCondition.lastSyncTimeEnd != null and andCondition.lastSyncTimeEnd!=''">
+							or a.lastSyncTime <![CDATA[ <= ]]> STR_TO_DATE(left(concat(#{andCondition.lastSyncTimeEnd},' 23:59:59'),19),'%Y-%m-%d %k:%i:%s')
+						</if>
+					</trim>
+				</foreach>
+			</if>
+			<!-- 条件映射-集合之间使用OR，集合中元素使用AND-(list[0].1 and list[0].2) or (list[1].3 and list[1].4) -->
+			<if test="condition.containsKey('orConditionList') and !condition.orConditionList.isEmpty()">
+				and
+				<foreach collection="condition.orConditionList" open="(" close=")" index="index" item="orCondition" separator=" or ">
+					<trim prefixOverrides="and" prefix="(" suffix=")">
+						
+						<if test="orCondition.containsKey('id')">
+							<if test="orCondition.id != null">
+								and a.id=#{orCondition.id}
+							</if>
+						</if>
+						<if test="orCondition.containsKey('id')">
+							<if test="orCondition.id != null ">
+								and a.id = #{orCondition.id}
+							</if>
+							<if test="orCondition.id == null">
+								and a.id is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('idList')">
+							 and a.id in 
+							<foreach collection="orCondition.idList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('idStart') and orCondition.idStart != null">
+							and a.id <![CDATA[ >= ]]> #{orCondition.idStart}
+						</if>
+						<if test="orCondition.containsKey('idEnd') and orCondition.idEnd != null">
+							and a.id <![CDATA[ <= ]]> #{orCondition.idEnd}
+						</if>
+						<if test="orCondition.containsKey('areaId')">
+							<if test="orCondition.areaId != null ">
+								and a.areaId = #{orCondition.areaId}
+							</if>
+							<if test="orCondition.areaId == null">
+								and a.areaId is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('areaIdList')">
+							 and a.areaId in 
+							<foreach collection="orCondition.areaIdList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('areaIdStart') and orCondition.areaIdStart != null">
+							and a.areaId <![CDATA[ >= ]]> #{orCondition.areaIdStart}
+						</if>
+						<if test="orCondition.containsKey('areaIdEnd') and orCondition.areaIdEnd != null">
+							and a.areaId <![CDATA[ <= ]]> #{orCondition.areaIdEnd}
+						</if>
+						<if test="orCondition.containsKey('city')">
+							<if test="orCondition.city != null and orCondition.city != ''">
+								and a.city like #{orCondition.city}
+							</if>
+							<if test="orCondition.city == null">
+								and a.city is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('cityList')">
+							 and a.city in 
+							<foreach collection="orCondition.cityList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('cityCode')">
+							<if test="orCondition.cityCode != null and orCondition.cityCode != ''">
+								and a.cityCode like #{orCondition.cityCode}
+							</if>
+							<if test="orCondition.cityCode == null">
+								and a.cityCode is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('cityCodeList')">
+							 and a.cityCode in 
+							<foreach collection="orCondition.cityCodeList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('date')">
+							<if test="orCondition.date != null ">
+								and a.date = #{orCondition.date}
+							</if>
+							<if test="orCondition.date == null">
+								and a.date is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('dateList')">
+							 and a.date in 
+							<foreach collection="orCondition.dateList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('dateStart') and orCondition.dateStart != null">
+							and a.date <![CDATA[ >= ]]> #{orCondition.dateStart}
+						</if>
+						<if test="orCondition.containsKey('dateEnd') and orCondition.dateEnd != null">
+							and a.date <![CDATA[ <= ]]> #{orCondition.dateEnd}
+						</if>
+						<if test="orCondition.containsKey('reportTime')">
+							<if test="orCondition.reportTime != null and orCondition.reportTime != ''">
+								and a.reportTime like #{orCondition.reportTime}
+							</if>
+							<if test="orCondition.reportTime == null">
+								and a.reportTime is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('reportTimeList')">
+							 and a.reportTime in 
+							<foreach collection="orCondition.reportTimeList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('sunriseTime')">
+							<if test="orCondition.sunriseTime != null and orCondition.sunriseTime != ''">
+								and a.sunriseTime like #{orCondition.sunriseTime}
+							</if>
+							<if test="orCondition.sunriseTime == null">
+								and a.sunriseTime is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('sunriseTimeList')">
+							 and a.sunriseTime in 
+							<foreach collection="orCondition.sunriseTimeList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('sunsetTime')">
+							<if test="orCondition.sunsetTime != null and orCondition.sunsetTime != ''">
+								and a.sunsetTime like #{orCondition.sunsetTime}
+							</if>
+							<if test="orCondition.sunsetTime == null">
+								and a.sunsetTime is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('sunsetTimeList')">
+							 and a.sunsetTime in 
+							<foreach collection="orCondition.sunsetTimeList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('weatherType')">
+							<if test="orCondition.weatherType != null ">
+								and a.weatherType = #{orCondition.weatherType}
+							</if>
+							<if test="orCondition.weatherType == null">
+								and a.weatherType is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('weatherTypeList')">
+							 and a.weatherType in 
+							<foreach collection="orCondition.weatherTypeList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('weatherTypeStart') and orCondition.weatherTypeStart != null">
+							and a.weatherType <![CDATA[ >= ]]> #{orCondition.weatherTypeStart}
+						</if>
+						<if test="orCondition.containsKey('weatherTypeEnd') and orCondition.weatherTypeEnd != null">
+							and a.weatherType <![CDATA[ <= ]]> #{orCondition.weatherTypeEnd}
+						</if>
+						<if test="orCondition.containsKey('weatherTypeForNight')">
+							<if test="orCondition.weatherTypeForNight != null ">
+								and a.weatherTypeForNight = #{orCondition.weatherTypeForNight}
+							</if>
+							<if test="orCondition.weatherTypeForNight == null">
+								and a.weatherTypeForNight is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('weatherTypeForNightList')">
+							 and a.weatherTypeForNight in 
+							<foreach collection="orCondition.weatherTypeForNightList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('weatherTypeForNightStart') and orCondition.weatherTypeForNightStart != null">
+							and a.weatherTypeForNight <![CDATA[ >= ]]> #{orCondition.weatherTypeForNightStart}
+						</if>
+						<if test="orCondition.containsKey('weatherTypeForNightEnd') and orCondition.weatherTypeForNightEnd != null">
+							and a.weatherTypeForNight <![CDATA[ <= ]]> #{orCondition.weatherTypeForNightEnd}
+						</if>
+						<if test="orCondition.containsKey('weatherTypeForReal')">
+							<if test="orCondition.weatherTypeForReal != null ">
+								and a.weatherTypeForReal = #{orCondition.weatherTypeForReal}
+							</if>
+							<if test="orCondition.weatherTypeForReal == null">
+								and a.weatherTypeForReal is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('weatherTypeForRealList')">
+							 and a.weatherTypeForReal in 
+							<foreach collection="orCondition.weatherTypeForRealList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('weatherTypeForRealStart') and orCondition.weatherTypeForRealStart != null">
+							and a.weatherTypeForReal <![CDATA[ >= ]]> #{orCondition.weatherTypeForRealStart}
+						</if>
+						<if test="orCondition.containsKey('weatherTypeForRealEnd') and orCondition.weatherTypeForRealEnd != null">
+							and a.weatherTypeForReal <![CDATA[ <= ]]> #{orCondition.weatherTypeForRealEnd}
+						</if>
+						<if test="orCondition.containsKey('weather')">
+							<if test="orCondition.weather != null and orCondition.weather != ''">
+								and a.weather like #{orCondition.weather}
+							</if>
+							<if test="orCondition.weather == null">
+								and a.weather is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('weatherList')">
+							 and a.weather in 
+							<foreach collection="orCondition.weatherList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('weatherForNight')">
+							<if test="orCondition.weatherForNight != null and orCondition.weatherForNight != ''">
+								and a.weatherForNight like #{orCondition.weatherForNight}
+							</if>
+							<if test="orCondition.weatherForNight == null">
+								and a.weatherForNight is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('weatherForNightList')">
+							 and a.weatherForNight in 
+							<foreach collection="orCondition.weatherForNightList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('weatherForReal')">
+							<if test="orCondition.weatherForReal != null and orCondition.weatherForReal != ''">
+								and a.weatherForReal like #{orCondition.weatherForReal}
+							</if>
+							<if test="orCondition.weatherForReal == null">
+								and a.weatherForReal is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('weatherForRealList')">
+							 and a.weatherForReal in 
+							<foreach collection="orCondition.weatherForRealList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('airTemperature')">
+							<if test="orCondition.airTemperature != null ">
+								and a.airTemperature = #{orCondition.airTemperature}
+							</if>
+							<if test="orCondition.airTemperature == null">
+								and a.airTemperature is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('airTemperatureList')">
+							 and a.airTemperature in 
+							<foreach collection="orCondition.airTemperatureList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('airTemperatureStart') and orCondition.airTemperatureStart != null">
+							and a.airTemperature <![CDATA[ >= ]]> #{orCondition.airTemperatureStart}
+						</if>
+						<if test="orCondition.containsKey('airTemperatureEnd') and orCondition.airTemperatureEnd != null">
+							and a.airTemperature <![CDATA[ <= ]]> #{orCondition.airTemperatureEnd}
+						</if>
+						<if test="orCondition.containsKey('airTemperatureForNight')">
+							<if test="orCondition.airTemperatureForNight != null ">
+								and a.airTemperatureForNight = #{orCondition.airTemperatureForNight}
+							</if>
+							<if test="orCondition.airTemperatureForNight == null">
+								and a.airTemperatureForNight is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('airTemperatureForNightList')">
+							 and a.airTemperatureForNight in 
+							<foreach collection="orCondition.airTemperatureForNightList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('airTemperatureForNightStart') and orCondition.airTemperatureForNightStart != null">
+							and a.airTemperatureForNight <![CDATA[ >= ]]> #{orCondition.airTemperatureForNightStart}
+						</if>
+						<if test="orCondition.containsKey('airTemperatureForNightEnd') and orCondition.airTemperatureForNightEnd != null">
+							and a.airTemperatureForNight <![CDATA[ <= ]]> #{orCondition.airTemperatureForNightEnd}
+						</if>
+						<if test="orCondition.containsKey('airTemperatureForReal')">
+							<if test="orCondition.airTemperatureForReal != null ">
+								and a.airTemperatureForReal = #{orCondition.airTemperatureForReal}
+							</if>
+							<if test="orCondition.airTemperatureForReal == null">
+								and a.airTemperatureForReal is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('airTemperatureForRealList')">
+							 and a.airTemperatureForReal in 
+							<foreach collection="orCondition.airTemperatureForRealList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('airTemperatureForRealStart') and orCondition.airTemperatureForRealStart != null">
+							and a.airTemperatureForReal <![CDATA[ >= ]]> #{orCondition.airTemperatureForRealStart}
+						</if>
+						<if test="orCondition.containsKey('airTemperatureForRealEnd') and orCondition.airTemperatureForRealEnd != null">
+							and a.airTemperatureForReal <![CDATA[ <= ]]> #{orCondition.airTemperatureForRealEnd}
+						</if>
+						<if test="orCondition.containsKey('airHumidity')">
+							<if test="orCondition.airHumidity != null ">
+								and a.airHumidity = #{orCondition.airHumidity}
+							</if>
+							<if test="orCondition.airHumidity == null">
+								and a.airHumidity is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('airHumidityList')">
+							 and a.airHumidity in 
+							<foreach collection="orCondition.airHumidityList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('airHumidityStart') and orCondition.airHumidityStart != null">
+							and a.airHumidity <![CDATA[ >= ]]> #{orCondition.airHumidityStart}
+						</if>
+						<if test="orCondition.containsKey('airHumidityEnd') and orCondition.airHumidityEnd != null">
+							and a.airHumidity <![CDATA[ <= ]]> #{orCondition.airHumidityEnd}
+						</if>
+						<if test="orCondition.containsKey('airHumidityForReal')">
+							<if test="orCondition.airHumidityForReal != null ">
+								and a.airHumidityForReal = #{orCondition.airHumidityForReal}
+							</if>
+							<if test="orCondition.airHumidityForReal == null">
+								and a.airHumidityForReal is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('airHumidityForRealList')">
+							 and a.airHumidityForReal in 
+							<foreach collection="orCondition.airHumidityForRealList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('airHumidityForRealStart') and orCondition.airHumidityForRealStart != null">
+							and a.airHumidityForReal <![CDATA[ >= ]]> #{orCondition.airHumidityForRealStart}
+						</if>
+						<if test="orCondition.containsKey('airHumidityForRealEnd') and orCondition.airHumidityForRealEnd != null">
+							and a.airHumidityForReal <![CDATA[ <= ]]> #{orCondition.airHumidityForRealEnd}
+						</if>
+						<if test="orCondition.containsKey('airQuality')">
+							<if test="orCondition.airQuality != null and orCondition.airQuality != ''">
+								and a.airQuality like #{orCondition.airQuality}
+							</if>
+							<if test="orCondition.airQuality == null">
+								and a.airQuality is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('airQualityList')">
+							 and a.airQuality in 
+							<foreach collection="orCondition.airQualityList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('airQI')">
+							<if test="orCondition.airQI != null ">
+								and a.airQI = #{orCondition.airQI}
+							</if>
+							<if test="orCondition.airQI == null">
+								and a.airQI is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('airQIList')">
+							 and a.airQI in 
+							<foreach collection="orCondition.airQIList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('airQIStart') and orCondition.airQIStart != null">
+							and a.airQI <![CDATA[ >= ]]> #{orCondition.airQIStart}
+						</if>
+						<if test="orCondition.containsKey('airQIEnd') and orCondition.airQIEnd != null">
+							and a.airQI <![CDATA[ <= ]]> #{orCondition.airQIEnd}
+						</if>
+						<if test="orCondition.containsKey('airMaxTemperature')">
+							<if test="orCondition.airMaxTemperature != null ">
+								and a.airMaxTemperature = #{orCondition.airMaxTemperature}
+							</if>
+							<if test="orCondition.airMaxTemperature == null">
+								and a.airMaxTemperature is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('airMaxTemperatureList')">
+							 and a.airMaxTemperature in 
+							<foreach collection="orCondition.airMaxTemperatureList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('airMaxTemperatureStart') and orCondition.airMaxTemperatureStart != null">
+							and a.airMaxTemperature <![CDATA[ >= ]]> #{orCondition.airMaxTemperatureStart}
+						</if>
+						<if test="orCondition.containsKey('airMaxTemperatureEnd') and orCondition.airMaxTemperatureEnd != null">
+							and a.airMaxTemperature <![CDATA[ <= ]]> #{orCondition.airMaxTemperatureEnd}
+						</if>
+						<if test="orCondition.containsKey('airMinTemperature')">
+							<if test="orCondition.airMinTemperature != null ">
+								and a.airMinTemperature = #{orCondition.airMinTemperature}
+							</if>
+							<if test="orCondition.airMinTemperature == null">
+								and a.airMinTemperature is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('airMinTemperatureList')">
+							 and a.airMinTemperature in 
+							<foreach collection="orCondition.airMinTemperatureList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('airMinTemperatureStart') and orCondition.airMinTemperatureStart != null">
+							and a.airMinTemperature <![CDATA[ >= ]]> #{orCondition.airMinTemperatureStart}
+						</if>
+						<if test="orCondition.containsKey('airMinTemperatureEnd') and orCondition.airMinTemperatureEnd != null">
+							and a.airMinTemperature <![CDATA[ <= ]]> #{orCondition.airMinTemperatureEnd}
+						</if>
+						<if test="orCondition.containsKey('airPM25Value')">
+							<if test="orCondition.airPM25Value != null ">
+								and a.airPM25Value = #{orCondition.airPM25Value}
+							</if>
+							<if test="orCondition.airPM25Value == null">
+								and a.airPM25Value is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('airPM25ValueList')">
+							 and a.airPM25Value in 
+							<foreach collection="orCondition.airPM25ValueList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('airPM25ValueStart') and orCondition.airPM25ValueStart != null">
+							and a.airPM25Value <![CDATA[ >= ]]> #{orCondition.airPM25ValueStart}
+						</if>
+						<if test="orCondition.containsKey('airPM25ValueEnd') and orCondition.airPM25ValueEnd != null">
+							and a.airPM25Value <![CDATA[ <= ]]> #{orCondition.airPM25ValueEnd}
+						</if>
+						<if test="orCondition.containsKey('airPM10Value')">
+							<if test="orCondition.airPM10Value != null ">
+								and a.airPM10Value = #{orCondition.airPM10Value}
+							</if>
+							<if test="orCondition.airPM10Value == null">
+								and a.airPM10Value is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('airPM10ValueList')">
+							 and a.airPM10Value in 
+							<foreach collection="orCondition.airPM10ValueList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('airPM10ValueStart') and orCondition.airPM10ValueStart != null">
+							and a.airPM10Value <![CDATA[ >= ]]> #{orCondition.airPM10ValueStart}
+						</if>
+						<if test="orCondition.containsKey('airPM10ValueEnd') and orCondition.airPM10ValueEnd != null">
+							and a.airPM10Value <![CDATA[ <= ]]> #{orCondition.airPM10ValueEnd}
+						</if>
+						<if test="orCondition.containsKey('windDirection')">
+							<if test="orCondition.windDirection != null and orCondition.windDirection != ''">
+								and a.windDirection like #{orCondition.windDirection}
+							</if>
+							<if test="orCondition.windDirection == null">
+								and a.windDirection is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('windDirectionList')">
+							 and a.windDirection in 
+							<foreach collection="orCondition.windDirectionList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('windDirectionForNight')">
+							<if test="orCondition.windDirectionForNight != null and orCondition.windDirectionForNight != ''">
+								and a.windDirectionForNight like #{orCondition.windDirectionForNight}
+							</if>
+							<if test="orCondition.windDirectionForNight == null">
+								and a.windDirectionForNight is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('windDirectionForNightList')">
+							 and a.windDirectionForNight in 
+							<foreach collection="orCondition.windDirectionForNightList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('windDirectionForReal')">
+							<if test="orCondition.windDirectionForReal != null and orCondition.windDirectionForReal != ''">
+								and a.windDirectionForReal like #{orCondition.windDirectionForReal}
+							</if>
+							<if test="orCondition.windDirectionForReal == null">
+								and a.windDirectionForReal is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('windDirectionForRealList')">
+							 and a.windDirectionForReal in 
+							<foreach collection="orCondition.windDirectionForRealList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('windPower')">
+							<if test="orCondition.windPower != null and orCondition.windPower != ''">
+								and a.windPower like #{orCondition.windPower}
+							</if>
+							<if test="orCondition.windPower == null">
+								and a.windPower is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('windPowerList')">
+							 and a.windPower in 
+							<foreach collection="orCondition.windPowerList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('windPowerForNight')">
+							<if test="orCondition.windPowerForNight != null and orCondition.windPowerForNight != ''">
+								and a.windPowerForNight like #{orCondition.windPowerForNight}
+							</if>
+							<if test="orCondition.windPowerForNight == null">
+								and a.windPowerForNight is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('windPowerForNightList')">
+							 and a.windPowerForNight in 
+							<foreach collection="orCondition.windPowerForNightList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('windPowerForReal')">
+							<if test="orCondition.windPowerForReal != null and orCondition.windPowerForReal != ''">
+								and a.windPowerForReal like #{orCondition.windPowerForReal}
+							</if>
+							<if test="orCondition.windPowerForReal == null">
+								and a.windPowerForReal is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('windPowerForRealList')">
+							 and a.windPowerForReal in 
+							<foreach collection="orCondition.windPowerForRealList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('barometric')">
+							<if test="orCondition.barometric != null ">
+								and a.barometric = #{orCondition.barometric}
+							</if>
+							<if test="orCondition.barometric == null">
+								and a.barometric is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('barometricList')">
+							 and a.barometric in 
+							<foreach collection="orCondition.barometricList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('barometricStart') and orCondition.barometricStart != null">
+							and a.barometric <![CDATA[ >= ]]> #{orCondition.barometricStart}
+						</if>
+						<if test="orCondition.containsKey('barometricEnd') and orCondition.barometricEnd != null">
+							and a.barometric <![CDATA[ <= ]]> #{orCondition.barometricEnd}
+						</if>
+						<if test="orCondition.containsKey('ultravioletRays')">
+							<if test="orCondition.ultravioletRays != null ">
+								and a.ultravioletRays = #{orCondition.ultravioletRays}
+							</if>
+							<if test="orCondition.ultravioletRays == null">
+								and a.ultravioletRays is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('ultravioletRaysList')">
+							 and a.ultravioletRays in 
+							<foreach collection="orCondition.ultravioletRaysList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('ultravioletRaysStart') and orCondition.ultravioletRaysStart != null">
+							and a.ultravioletRays <![CDATA[ >= ]]> #{orCondition.ultravioletRaysStart}
+						</if>
+						<if test="orCondition.containsKey('ultravioletRaysEnd') and orCondition.ultravioletRaysEnd != null">
+							and a.ultravioletRays <![CDATA[ <= ]]> #{orCondition.ultravioletRaysEnd}
+						</if>
+						<if test="orCondition.containsKey('ultraVioletIndex')">
+							<if test="orCondition.ultraVioletIndex != null ">
+								and a.ultraVioletIndex = #{orCondition.ultraVioletIndex}
+							</if>
+							<if test="orCondition.ultraVioletIndex == null">
+								and a.ultraVioletIndex is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('ultraVioletIndexList')">
+							 and a.ultraVioletIndex in 
+							<foreach collection="orCondition.ultraVioletIndexList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('ultraVioletIndexStart') and orCondition.ultraVioletIndexStart != null">
+							and a.ultraVioletIndex <![CDATA[ >= ]]> #{orCondition.ultraVioletIndexStart}
+						</if>
+						<if test="orCondition.containsKey('ultraVioletIndexEnd') and orCondition.ultraVioletIndexEnd != null">
+							and a.ultraVioletIndex <![CDATA[ <= ]]> #{orCondition.ultraVioletIndexEnd}
+						</if>
+						<if test="orCondition.containsKey('remark')">
+							<if test="orCondition.remark != null and orCondition.remark != ''">
+								and a.remark like #{orCondition.remark}
+							</if>
+							<if test="orCondition.remark == null">
+								and a.remark is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('remarkList')">
+							 and a.remark in 
+							<foreach collection="orCondition.remarkList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('ext')">
+							<if test="orCondition.ext != null and orCondition.ext != ''">
+								and a.ext like #{orCondition.ext}
+							</if>
+							<if test="orCondition.ext == null">
+								and a.ext is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('extList')">
+							 and a.ext in 
+							<foreach collection="orCondition.extList" open="(" close=")" index="index" item="item" separator=",">
+								#{item}
+							</foreach>
+						</if>
+						<if test="orCondition.containsKey('lastSyncTime')">
+							<if test="orCondition.lastSyncTime != null ">
+								and a.lastSyncTime = #{orCondition.lastSyncTime}
+							</if>
+							<if test="orCondition.lastSyncTime == null">
+								and a.lastSyncTime is null
+							</if>
+						</if>
+						<if test="orCondition.containsKey('lastSyncTimeStart') and orCondition.lastSyncTimeStart != null and orCondition.lastSyncTimeStart!=''">
+							and a.lastSyncTime <![CDATA[ >= ]]> STR_TO_DATE(left(concat(#{orCondition.lastSyncTimeStart},' 00:00:00'),19),'%Y-%m-%d %k:%i:%s')
+						</if>
+						<if test="orCondition.containsKey('lastSyncTimeEnd') and orCondition.lastSyncTimeEnd != null and orCondition.lastSyncTimeEnd!=''">
+							and a.lastSyncTime <![CDATA[ <= ]]> STR_TO_DATE(left(concat(#{orCondition.lastSyncTimeEnd},' 23:59:59'),19),'%Y-%m-%d %k:%i:%s')
+						</if>
+					</trim>
+				</foreach>
+			</if>
+		</if>
+	</sql>
+	
+	<sql id="_orderCols_">
+		<if test="orderColList != null and !orderColList.isEmpty()">
+			order by
+			<trim suffixOverrides=","  suffix="">
+				<foreach collection="orderColList" open="" close="" index="index" item="item" separator=",">
+					<choose>
+						<when test='item.colName=="id"'>
+							a.id
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="areaId"'>
+							a.areaId
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="city"'>
+							a.city
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="cityCode"'>
+							a.cityCode
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="date"'>
+							a.date
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="reportTime"'>
+							a.reportTime
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="sunriseTime"'>
+							a.sunriseTime
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="sunsetTime"'>
+							a.sunsetTime
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="weatherType"'>
+							a.weatherType
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="weatherTypeForNight"'>
+							a.weatherTypeForNight
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="weatherTypeForReal"'>
+							a.weatherTypeForReal
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="weather"'>
+							a.weather
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="weatherForNight"'>
+							a.weatherForNight
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="weatherForReal"'>
+							a.weatherForReal
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="airTemperature"'>
+							a.airTemperature
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="airTemperatureForNight"'>
+							a.airTemperatureForNight
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="airTemperatureForReal"'>
+							a.airTemperatureForReal
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="airHumidity"'>
+							a.airHumidity
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="airHumidityForReal"'>
+							a.airHumidityForReal
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="airQuality"'>
+							a.airQuality
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="airQI"'>
+							a.airQI
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="airMaxTemperature"'>
+							a.airMaxTemperature
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="airMinTemperature"'>
+							a.airMinTemperature
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="airPM25Value"'>
+							a.airPM25Value
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="airPM10Value"'>
+							a.airPM10Value
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="windDirection"'>
+							a.windDirection
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="windDirectionForNight"'>
+							a.windDirectionForNight
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="windDirectionForReal"'>
+							a.windDirectionForReal
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="windPower"'>
+							a.windPower
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="windPowerForNight"'>
+							a.windPowerForNight
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="windPowerForReal"'>
+							a.windPowerForReal
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="barometric"'>
+							a.barometric
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="ultravioletRays"'>
+							a.ultravioletRays
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="ultraVioletIndex"'>
+							a.ultraVioletIndex
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="remark"'>
+							a.remark
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="ext"'>
+							a.ext
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+						<when test='item.colName=="lastSyncTime"'>
+							a.lastSyncTime
+							<if test='item.sortKind != null and "DESC".equalsIgnoreCase(item.sortKind)'> DESC </if>
+						</when>
+					</choose>
+				</foreach>
+			</trim>
+		</if>
+		<if test="(orderColList == null or orderColList.isEmpty()) and orderCol != null and !orderCol.isEmpty()">
+			order by
+			<trim suffixOverrides=","  suffix="">
+				<if test="orderCol.containsKey('id')">
+					a.id
+					<if test='orderCol.id != null and "DESC".equalsIgnoreCase(orderCol.id)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('areaId')">
+					a.areaId
+					<if test='orderCol.areaId != null and "DESC".equalsIgnoreCase(orderCol.areaId)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('city')">
+					a.city
+					<if test='orderCol.city != null and "DESC".equalsIgnoreCase(orderCol.city)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('cityCode')">
+					a.cityCode
+					<if test='orderCol.cityCode != null and "DESC".equalsIgnoreCase(orderCol.cityCode)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('date')">
+					a.date
+					<if test='orderCol.date != null and "DESC".equalsIgnoreCase(orderCol.date)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('reportTime')">
+					a.reportTime
+					<if test='orderCol.reportTime != null and "DESC".equalsIgnoreCase(orderCol.reportTime)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('sunriseTime')">
+					a.sunriseTime
+					<if test='orderCol.sunriseTime != null and "DESC".equalsIgnoreCase(orderCol.sunriseTime)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('sunsetTime')">
+					a.sunsetTime
+					<if test='orderCol.sunsetTime != null and "DESC".equalsIgnoreCase(orderCol.sunsetTime)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('weatherType')">
+					a.weatherType
+					<if test='orderCol.weatherType != null and "DESC".equalsIgnoreCase(orderCol.weatherType)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('weatherTypeForNight')">
+					a.weatherTypeForNight
+					<if test='orderCol.weatherTypeForNight != null and "DESC".equalsIgnoreCase(orderCol.weatherTypeForNight)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('weatherTypeForReal')">
+					a.weatherTypeForReal
+					<if test='orderCol.weatherTypeForReal != null and "DESC".equalsIgnoreCase(orderCol.weatherTypeForReal)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('weather')">
+					a.weather
+					<if test='orderCol.weather != null and "DESC".equalsIgnoreCase(orderCol.weather)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('weatherForNight')">
+					a.weatherForNight
+					<if test='orderCol.weatherForNight != null and "DESC".equalsIgnoreCase(orderCol.weatherForNight)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('weatherForReal')">
+					a.weatherForReal
+					<if test='orderCol.weatherForReal != null and "DESC".equalsIgnoreCase(orderCol.weatherForReal)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('airTemperature')">
+					a.airTemperature
+					<if test='orderCol.airTemperature != null and "DESC".equalsIgnoreCase(orderCol.airTemperature)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('airTemperatureForNight')">
+					a.airTemperatureForNight
+					<if test='orderCol.airTemperatureForNight != null and "DESC".equalsIgnoreCase(orderCol.airTemperatureForNight)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('airTemperatureForReal')">
+					a.airTemperatureForReal
+					<if test='orderCol.airTemperatureForReal != null and "DESC".equalsIgnoreCase(orderCol.airTemperatureForReal)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('airHumidity')">
+					a.airHumidity
+					<if test='orderCol.airHumidity != null and "DESC".equalsIgnoreCase(orderCol.airHumidity)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('airHumidityForReal')">
+					a.airHumidityForReal
+					<if test='orderCol.airHumidityForReal != null and "DESC".equalsIgnoreCase(orderCol.airHumidityForReal)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('airQuality')">
+					a.airQuality
+					<if test='orderCol.airQuality != null and "DESC".equalsIgnoreCase(orderCol.airQuality)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('airQI')">
+					a.airQI
+					<if test='orderCol.airQI != null and "DESC".equalsIgnoreCase(orderCol.airQI)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('airMaxTemperature')">
+					a.airMaxTemperature
+					<if test='orderCol.airMaxTemperature != null and "DESC".equalsIgnoreCase(orderCol.airMaxTemperature)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('airMinTemperature')">
+					a.airMinTemperature
+					<if test='orderCol.airMinTemperature != null and "DESC".equalsIgnoreCase(orderCol.airMinTemperature)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('airPM25Value')">
+					a.airPM25Value
+					<if test='orderCol.airPM25Value != null and "DESC".equalsIgnoreCase(orderCol.airPM25Value)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('airPM10Value')">
+					a.airPM10Value
+					<if test='orderCol.airPM10Value != null and "DESC".equalsIgnoreCase(orderCol.airPM10Value)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('windDirection')">
+					a.windDirection
+					<if test='orderCol.windDirection != null and "DESC".equalsIgnoreCase(orderCol.windDirection)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('windDirectionForNight')">
+					a.windDirectionForNight
+					<if test='orderCol.windDirectionForNight != null and "DESC".equalsIgnoreCase(orderCol.windDirectionForNight)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('windDirectionForReal')">
+					a.windDirectionForReal
+					<if test='orderCol.windDirectionForReal != null and "DESC".equalsIgnoreCase(orderCol.windDirectionForReal)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('windPower')">
+					a.windPower
+					<if test='orderCol.windPower != null and "DESC".equalsIgnoreCase(orderCol.windPower)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('windPowerForNight')">
+					a.windPowerForNight
+					<if test='orderCol.windPowerForNight != null and "DESC".equalsIgnoreCase(orderCol.windPowerForNight)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('windPowerForReal')">
+					a.windPowerForReal
+					<if test='orderCol.windPowerForReal != null and "DESC".equalsIgnoreCase(orderCol.windPowerForReal)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('barometric')">
+					a.barometric
+					<if test='orderCol.barometric != null and "DESC".equalsIgnoreCase(orderCol.barometric)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('ultravioletRays')">
+					a.ultravioletRays
+					<if test='orderCol.ultravioletRays != null and "DESC".equalsIgnoreCase(orderCol.ultravioletRays)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('ultraVioletIndex')">
+					a.ultraVioletIndex
+					<if test='orderCol.ultraVioletIndex != null and "DESC".equalsIgnoreCase(orderCol.ultraVioletIndex)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('remark')">
+					a.remark
+					<if test='orderCol.remark != null and "DESC".equalsIgnoreCase(orderCol.remark)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('ext')">
+					a.ext
+					<if test='orderCol.ext != null and "DESC".equalsIgnoreCase(orderCol.ext)'> DESC </if>
+					,
+				</if>
+				<if test="orderCol.containsKey('lastSyncTime')">
+					a.lastSyncTime
+					<if test='orderCol.lastSyncTime != null and "DESC".equalsIgnoreCase(orderCol.lastSyncTime)'> DESC </if>
+					,
+				</if>
+			</trim>
+		</if>
+	</sql>
+	<sql id="_group_by_">
+		<if test="groupList != null and !groupList.isEmpty()">
+			GROUP BY
+			<trim suffixOverrides=","  suffix="">
+				<foreach collection="groupList" open="" close="" index="index" item="item" separator=",">
+					<choose>
+						<when test='item=="id"'>id</when>
+						<when test='item=="areaId"'>areaId</when>
+						<when test='item=="city"'>city</when>
+						<when test='item=="cityCode"'>cityCode</when>
+						<when test='item=="date"'>date</when>
+						<when test='item=="reportTime"'>reportTime</when>
+						<when test='item=="sunriseTime"'>sunriseTime</when>
+						<when test='item=="sunsetTime"'>sunsetTime</when>
+						<when test='item=="weatherType"'>weatherType</when>
+						<when test='item=="weatherTypeForNight"'>weatherTypeForNight</when>
+						<when test='item=="weatherTypeForReal"'>weatherTypeForReal</when>
+						<when test='item=="weather"'>weather</when>
+						<when test='item=="weatherForNight"'>weatherForNight</when>
+						<when test='item=="weatherForReal"'>weatherForReal</when>
+						<when test='item=="airTemperature"'>airTemperature</when>
+						<when test='item=="airTemperatureForNight"'>airTemperatureForNight</when>
+						<when test='item=="airTemperatureForReal"'>airTemperatureForReal</when>
+						<when test='item=="airHumidity"'>airHumidity</when>
+						<when test='item=="airHumidityForReal"'>airHumidityForReal</when>
+						<when test='item=="airQuality"'>airQuality</when>
+						<when test='item=="airQI"'>airQI</when>
+						<when test='item=="airMaxTemperature"'>airMaxTemperature</when>
+						<when test='item=="airMinTemperature"'>airMinTemperature</when>
+						<when test='item=="airPM25Value"'>airPM25Value</when>
+						<when test='item=="airPM10Value"'>airPM10Value</when>
+						<when test='item=="windDirection"'>windDirection</when>
+						<when test='item=="windDirectionForNight"'>windDirectionForNight</when>
+						<when test='item=="windDirectionForReal"'>windDirectionForReal</when>
+						<when test='item=="windPower"'>windPower</when>
+						<when test='item=="windPowerForNight"'>windPowerForNight</when>
+						<when test='item=="windPowerForReal"'>windPowerForReal</when>
+						<when test='item=="barometric"'>barometric</when>
+						<when test='item=="ultravioletRays"'>ultravioletRays</when>
+						<when test='item=="ultraVioletIndex"'>ultraVioletIndex</when>
+						<when test='item=="remark"'>remark</when>
+						<when test='item=="ext"'>ext</when>
+						<when test='item=="lastSyncTime"'>lastSyncTime</when>
+					</choose>
+				</foreach>
+			</trim>
+		</if>
+	</sql>
+</mapper>

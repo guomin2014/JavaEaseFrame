@@ -1,0 +1,118 @@
+spring:
+  http:
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
+  servlet:
+    multipart:
+      max-file-size: 10KB
+      max-request-size: 100KB
+server:
+  tomcat:
+    uri-encoding: utf-8
+endpoints:
+  logfile:
+    external-file: ${application.log.path}/${spring.application.name}/${server.port}-info.log
+application:
+  task:
+    thread:
+      size: 4
+    cache:
+      filePath: ${application.data.path}/${spring.application.name}
+feign:
+  client:
+    config:
+      #全局配置
+      default:
+        loggerLevel: BASIC
+        connectTimeout: 5000  # 相当于Request.Optionsn 连接超时时间
+        readTimeout: 5000     # 相当于Request.Options 读取超时时间
+      #想要调用的微服务名称
+      agent-service:
+        connectTimeout: 5000  # 相当于Request.Optionsn 连接超时时间
+        readTimeout: 5000     # 相当于Request.Options 读取超时时间
+        loggerLevel: FULL     # 配置Feign的日志级别，相当于代码配置方式中的Logger
+#        errorDecoder: com.example.SimpleErrorDecoder  # Feign的错误解码器，相当于代码配置方式中的ErrorDecoder
+#        retryer: com.example.SimpleRetryer  # 配置重试，相当于代码配置方式中的Retryer
+#        requestInterceptors: # 配置拦截器，相当于代码配置方式中的RequestInterceptor
+#          - com.example.FooRequestInterceptor
+#          - com.example.BarRequestInterceptor
+        # 是否对404错误解码
+        decode404: false
+#        encode: com.example.SimpleEncoder
+#        decoder: com.example.SimpleDecoder
+#        contract: com.example.SimpleContract
+knife4j:
+  enable: true
+  # 开启Swagger的Basic认证功能,默认是false
+  basic:
+      enable: false
+      # Basic认证用户名
+      username: test
+      # Basic认证密码
+      password: 123
+  openapi:
+    title: JavaEaseFrame框架-demo项目
+    description: "这是应用的描述信息"
+    email: guomin@javaeaseframe.com
+    concat: guomin
+    group:
+      test1:
+        group-name: 分组名称
+        api-rule: package
+        api-rule-resources:
+          - com.gm.javaeaseframe.demo.weather.web
+javaeaseframe:
+  interceptor:
+    login:
+      enable: true
+      uncheckUrl: /error,/refresh,/health,/doc.html,/swagger-resources,/v2/api-docs,/favicon.ico,/webjars/*,/inner/*
+    auth:
+      enable: false
+      uncheckUrl: /error,/refresh,/health,/common/login,/api/*
+    log:
+      enable: true
+      fetchFromNativeRequestEnable: true
+      printRequestUser: true
+      printRequestBody: true
+      printResponseBody: true
+      printPosition: beforeAndAfter
+  web:
+    cors:
+      enable: true
+    cacheBody:
+      enable: true
+      UrlPatterns: 
+        - /open/*
+        - /inner/*
+        - /v2/*
+    resourceHandlers:
+      "[/webjars/**]": "/webjars/"
+      "[/*.html]": "/"
+  mybatis:
+    root-path: com.gm
+    type-aliases-package: com.gm.**.model
+    mapper-locations: classpath*:sqlmap/**/*.xml
+  transaction:
+    enable: true
+    pointcut: 
+      - "* com.gm..*Service.*(..)"
+    methods:
+      - name: "save*"
+        propagation: "REQUIRED"
+      - name: "update*"
+        propagation: "REQUIRED"
+      - name: "remove*"
+        propagation: "REQUIRED"
+      - name: "*NewTx"
+        propagation: "REQUIRES_NEW"
+      - name: "*NonTx"
+        propagation: "NOT_SUPPORTED"
+      - name: "*"
+        propagation: "SUPPORTS"
+        readOnly: true
+  xxl:
+    job:
+      adminAddresses: http://127.0.0.1:8080/xxl-job-admin
+      appname: ${spring.application.name}

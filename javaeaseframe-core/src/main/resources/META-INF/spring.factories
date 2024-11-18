@@ -1,0 +1,9 @@
+# Application Listeners
+org.springframework.context.ApplicationListener=\
+com.gm.javaeaseframe.core.listener.ApplicationListenerTest,\
+com.gm.javaeaseframe.core.listener.ApplicationCloseListener,\
+com.gm.javaeaseframe.core.listener.ApplicationRefreshedListener,\
+com.gm.javaeaseframe.core.listener.ApplicationStartingListener
+
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.gm.javaeaseframe.core.CoreAutoConfiguration

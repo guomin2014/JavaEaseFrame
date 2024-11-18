@@ -1,0 +1,30 @@
+server:
+  port: 17300
+spring:
+  security:
+    enable: true
+    user:
+      name: admin
+      password: "{cipher}500af703b831b3ca5c02f9750d04a1103ba835677dcaff9aefb8b3b814f7828c"
+  sleuth:
+    sampler:
+      percentage: 1
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/javaeaseframe-demo?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: "123456"
+    druid:
+      initialSize: 1
+      minIdle: 1
+      maxActive: 3
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      filters: stat
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      web-stat-filter:
+        enabled: false
+      stat-view-servlet:
+        enabled: false

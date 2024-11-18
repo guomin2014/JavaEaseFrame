@@ -1,0 +1,47 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.gm.framework</groupId>
+		<artifactId>javaeaseframe-parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>javaeaseframe-knife4j-spring-boot-starter</artifactId>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.gm.framework</groupId>
+			<artifactId>javaeaseframe-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.github.xiaoymin</groupId>
+			<artifactId>knife4j-openapi2-spring-boot-starter</artifactId>
+		</dependency>
+		<!-- Swagger 2 依赖 -->
+	    <!-- <dependency>
+	        <groupId>io.springfox</groupId>
+	        <artifactId>springfox-swagger2</artifactId>
+	    </dependency> -->
+	    <!-- Swagger UI 依赖（Knife4j会基于这个UI进行增强） -->
+	    <!-- <dependency>
+	        <groupId>io.springfox</groupId>
+	        <artifactId>springfox-swagger-ui</artifactId>
+	    </dependency> -->
+		<!-- Knife4j 依赖 -->
+		<!-- <dependency>
+	      <groupId>com.github.xiaoymin</groupId>
+	      <artifactId>knife4j-core</artifactId>
+	    </dependency>
+	    <dependency>
+		    <groupId>com.github.xiaoymin</groupId>
+		    <artifactId>knife4j-openapi2-ui</artifactId>
+		</dependency> -->
+	</dependencies>
+
+</project>
