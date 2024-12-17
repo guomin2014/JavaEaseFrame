@@ -11,46 +11,11 @@ spring:
 server:
   tomcat:
     uri-encoding: utf-8
-endpoints:
-  logfile:
-    external-file: ${application.log.path}/${spring.application.name}/${server.port}-info.log
-application:
-  task:
-    thread:
-      size: 4
-    cache:
-      filePath: ${application.data.path}/${spring.application.name}
-feign:
-  client:
-    config:
-      #全局配置
-      default:
-        loggerLevel: BASIC
-        connectTimeout: 5000  # 相当于Request.Optionsn 连接超时时间
-        readTimeout: 5000     # 相当于Request.Options 读取超时时间
-      #想要调用的微服务名称
-      agent-service:
-        connectTimeout: 5000  # 相当于Request.Optionsn 连接超时时间
-        readTimeout: 5000     # 相当于Request.Options 读取超时时间
-        loggerLevel: FULL     # 配置Feign的日志级别，相当于代码配置方式中的Logger
-#        errorDecoder: com.example.SimpleErrorDecoder  # Feign的错误解码器，相当于代码配置方式中的ErrorDecoder
-#        retryer: com.example.SimpleRetryer  # 配置重试，相当于代码配置方式中的Retryer
-#        requestInterceptors: # 配置拦截器，相当于代码配置方式中的RequestInterceptor
-#          - com.example.FooRequestInterceptor
-#          - com.example.BarRequestInterceptor
-        # 是否对404错误解码
-        decode404: false
-#        encode: com.example.SimpleEncoder
-#        decoder: com.example.SimpleDecoder
-#        contract: com.example.SimpleContract
 knife4j:
   enable: true
-  # 开启Swagger的Basic认证功能,默认是false
   basic:
-      enable: false
-      # Basic认证用户名
+      enable: true
       username: test
-      # Basic认证密码
       password: 123
   openapi:
     title: JavaEaseFrame框架-demo项目
@@ -58,7 +23,7 @@ knife4j:
     email: guomin@javaeaseframe.com
     concat: guomin
     group:
-      test1:
+      group1:
         group-name: 分组名称
         api-rule: package
         api-rule-resources:

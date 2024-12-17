@@ -29,8 +29,6 @@ info:
   desc: "@project.description@"
   version: "@project.version@"
   ip: ${spring.cloud.client.ip-address}:${server.port}
-encrypt:
-  key: foobar
 application:
   log:
     level: "@profiles.log.level@"

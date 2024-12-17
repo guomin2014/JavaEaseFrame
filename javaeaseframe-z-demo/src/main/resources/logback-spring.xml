@@ -2,20 +2,12 @@
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
     <springProperty scope="context" name="springApplicationName" source="spring.application.name"/>
     <springProperty scope="context" name="serverPort" source="server.port"/>
-    <springProperty scope="context" name="logFilePath" source="application.log.path" defaultValue="/export/logs/www.normal.com" />
+    <springProperty scope="context" name="logFilePath" source="application.log.path" defaultValue="/export/logs/www.javaeaseframe.com" />
     <springProperty scope="context" name="logLevel" source="application.log.level" defaultValue="INFO" />
-    <property name="logFilePath" value="${logFilePath:-/export/logs/www.normal.com}" />
+    <property name="logFilePath" value="${logFilePath:-/export/logs/www.javaeaseframe.com}" />
 	<property name="logLevel" value="${logLevel:-INFO}" />
 
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
-    	<filter class="ch.qos.logback.core.filter.EvaluatorFilter">
-    		<evaluator> <!-- defaults to type ch.qos.logback.classic.boolex.JaninoEventEvaluator -->
-                <expression>return logger.equals("org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping") 
-                || logger.equals("org.springframework.aop.framework.CglibAopProxy");</expression>
-            </evaluator>
-            <OnMismatch>NEUTRAL</OnMismatch>
-            <OnMatch>DENY</OnMatch>
-    	</filter>
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%thread] [%.50c\(%L\)] - %msg%n</pattern>
         </encoder>
@@ -46,12 +38,5 @@
         <appender-ref ref="fileInfo"/>
         <appender-ref ref="fileError"/>
     </root>
-    <!-- 打印SQL -->
-  	<!-- <logger name="com.joyes.stat.meteorology.dao" level="DEBUG"></logger> -->
-    <!-- 打印事务 -->
-    
-    <logger name="org.mybatis.spring" level="DEBUG"></logger>
-	<logger name="org.springframework.transaction" level="DEBUG"></logger>
-	<logger name="org.springframework.jdbc" level="DEBUG"></logger>
 	
 </configuration>
