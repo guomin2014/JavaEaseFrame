@@ -3,25 +3,8 @@ spring:
     name: javaeaseframe-demo-service
   profiles:
     active: "@profiles.active@"
-  cloud:
-    nacos:
-      config:
-        namespace: ${nacos.namespace}
-        server-addr: ${nacos.server.addr}
-        username: ${nacos.username}
-        password: ${nacos.password}
-      discovery:
-        namespace: ${nacos.namespace}
-        server-addr: ${nacos.server.addr}
-        username: ${nacos.username}
-        password: ${nacos.password}
   config:
     import: 
-      #如果使用本地配置，则使用-classpath，且需要将pom.xml中的spring-cloud-starter-alibaba-nacos-config与spring-cloud-starter-alibaba-nacos-discovery禁用
-      #当前默认使用nacos的配置
-      #- optional:nacos:common.yml?group=${nacos.group}
-      #- optional:nacos:${spring.application.name}.yml?group=${nacos.group}
-      #- optional:nacos:${spring.application.name}-dev.yml?refreshEnabled=false&group=${nacos.group}
       - classpath:${spring.application.name}.yml
       - classpath:${spring.application.name}-${spring.profiles.active}.yml
 info:

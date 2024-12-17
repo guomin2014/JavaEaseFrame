@@ -19,14 +19,8 @@
             <id>dev</id>
             <properties>
                 <profiles.active>dev</profiles.active>
-                <profiles.nacos.uri>http://127.0.0.1:8848</profiles.nacos.uri>
-                <profiles.nacos.username>nacos</profiles.nacos.username>
-                <profiles.nacos.password>nacos</profiles.nacos.password>
-                <profiles.nacos.group>DEFAULT_GROUP</profiles.nacos.group>
-                <profiles.nacos.namespace>public</profiles.nacos.namespace>
                 <profiles.log.level>INFO</profiles.log.level>
                 <profiles.log.path>/export/logs/www.normal.com/</profiles.log.path>
-                <profiles.jvm.maxmemory>512M</profiles.jvm.maxmemory>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -36,41 +30,21 @@
             <id>test</id>
             <properties>
                 <profiles.active>test</profiles.active>
-                <profiles.nacos.uri>http://127.0.0.1:8848</profiles.nacos.uri>
-                <profiles.nacos.username>nacos</profiles.nacos.username>
-                <profiles.nacos.password>nacos</profiles.nacos.password>
-                <profiles.nacos.group>DEFAULT_GROUP</profiles.nacos.group>
-                <profiles.nacos.namespace>a2c5f740-a9d3-47d7-9a0e-77e47293608c</profiles.nacos.namespace>
                 <profiles.log.level>INFO</profiles.log.level>
                 <profiles.log.path>/export/logs/www.normal.com/</profiles.log.path>
-                <profiles.jvm.maxmemory>512M</profiles.jvm.maxmemory>
             </properties>
         </profile>
         <profile>
             <id>prod</id>
             <properties>
                 <profiles.active>prod</profiles.active>
-                <profiles.nacos.uri>http://127.0.0.1:8848</profiles.nacos.uri>
-                <profiles.nacos.username>nacos</profiles.nacos.username>
-                <profiles.nacos.password>q1w2e3r4!@#$</profiles.nacos.password>
-                <profiles.nacos.group>DEFAULT_GROUP</profiles.nacos.group>
-                <profiles.nacos.namespace>public</profiles.nacos.namespace>
                 <profiles.log.level>INFO</profiles.log.level>
                 <profiles.log.path>/export/logs/www.normal.com/</profiles.log.path>
-                <profiles.jvm.maxmemory>2G</profiles.jvm.maxmemory>
             </properties>
         </profile>
     </profiles>
 
 	<dependencies>
-		<!-- <dependency>
-			<groupId>com.alibaba.cloud</groupId>
-			<artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.alibaba.cloud</groupId>
-			<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-		</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
