@@ -2,7 +2,9 @@ package com.gm.javaeaseframe.interceptor.spring.boot.autoconfigure.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties("gmframework.interceptor.log")
+import com.gm.javaeaseframe.common.code.PlatformConstants;
+
+@ConfigurationProperties(PlatformConstants.PLATFORM_CONFIG_PREFIX + ".interceptor.log")
 public class LogInterceptorProperties {
 
 	private boolean enable = true;

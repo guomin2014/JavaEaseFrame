@@ -13,6 +13,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import com.gm.javaeaseframe.common.code.PlatformConstants;
 import com.gm.javaeaseframe.transaction.spring.boot.autoconfigure.annotation.EnableNormalTransactionManagement;
 import com.gm.javaeaseframe.transaction.spring.boot.autoconfigure.properties.AbstractNormalTransactionManagementConfiguration;
 import com.gm.javaeaseframe.transaction.spring.boot.autoconfigure.properties.TransactionProperties;
@@ -22,7 +23,7 @@ import com.gm.javaeaseframe.transaction.spring.boot.autoconfigure.properties.Tra
 @ConditionalOnClass(PlatformTransactionManager.class)
 @AutoConfigureAfter({ JtaAutoConfiguration.class, HibernateJpaAutoConfiguration.class, DataSourceTransactionManagerAutoConfiguration.class, Neo4jDataAutoConfiguration.class })
 @EnableConfigurationProperties({TransactionProperties.class})
-@ConditionalOnProperty(name = "javaeaseframe.transaction.enable", havingValue = "true", matchIfMissing = true)
+@ConditionalOnProperty(name = PlatformConstants.PLATFORM_CONFIG_PREFIX + ".transaction.enable", havingValue = "true", matchIfMissing = true)
 public class TransactionAutoConfiguration {
     
     @Configuration

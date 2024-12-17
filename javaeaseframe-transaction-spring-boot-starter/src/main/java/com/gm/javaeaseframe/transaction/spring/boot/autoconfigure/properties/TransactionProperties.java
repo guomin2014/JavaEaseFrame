@@ -7,7 +7,9 @@ import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties("javaeaseframe.transaction")
+import com.gm.javaeaseframe.common.code.PlatformConstants;
+
+@ConfigurationProperties(PlatformConstants.PLATFORM_CONFIG_PREFIX + ".transaction")
 public class TransactionProperties {
 
 	/**

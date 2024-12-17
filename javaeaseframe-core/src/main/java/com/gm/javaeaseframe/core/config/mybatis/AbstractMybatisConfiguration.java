@@ -50,7 +50,7 @@ public abstract class AbstractMybatisConfiguration {
 	@Bean(name = "sqlSessionFactory")
 	public SqlSessionFactory sqlSessionFactoryBean() {
 		try {
-		    logger.info("开始初始化SqlSessionFactory...");
+		    logger.info("init SqlSessionFactory...");
 			// 解决myBatis下 不能从嵌套jar文件中读取class的问题
 			VFS.addImplClass(SpringBootVFS.class);
 			SqlSessionFactoryBean sessionFactoryBean = new SqlSessionFactoryBean();
@@ -63,13 +63,13 @@ public abstract class AbstractMybatisConfiguration {
 			//设置mybatis的配置（分页、缓存等）
 			String configLocation = this.getMybatisConfig();
 			if (StringUtils.isNotEmpty(configLocation)) {
-			    logger.info("MyBatis运用配置文件-->" + configLocation);
+			    logger.info("MyBatis config file from " + configLocation);
     			Resource[] configLocations = new PathMatchingResourcePatternResolver().getResources(configLocation);
     			if (configLocations != null && configLocations.length > 0) {
     				sessionFactoryBean.setConfigLocation(configLocations[0]);
     			}
 			} else {
-			    logger.info("MyBatis使用默认配置");
+			    logger.info("MyBatis used default configuration");
 			    //添加基础配置
 //			    Properties properties = new Properties();
 //			    properties.put("cacheEnabled", false);
@@ -139,10 +139,10 @@ public abstract class AbstractMybatisConfiguration {
 			logger.error(e.getMessage(), e);
 		}
 		if (typeAliasesPackageStringBuffer.length() == 0) {
-			throw new RuntimeException("mybatis typeAliasesPackage 路径扫描错误！请检查applicationContext.xml@sqlSessionFactory配置！");
+			throw new RuntimeException("mybatis typeAliasesPackage error！check applicationContext.xml@sqlSessionFactory config！");
 		}
 		String allTypeAliasesPackage = typeAliasesPackageStringBuffer.toString().replace(PATH_SEPARATOR, ".");
-		logger.info("MyBatis扫描包路径：" + allTypeAliasesPackage);
+		logger.info("MyBatis scanner packages：" + allTypeAliasesPackage);
 		return allTypeAliasesPackage;
 	}
 

@@ -12,6 +12,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.gm.javaeaseframe.common.code.PlatformConstants;
 import com.gm.javaeaseframe.core.config.web.filter.CachingRequestBodyFilter;
 import com.gm.javaeaseframe.web.spring.boot.autoconfigure.advice.GlobalExceptionAdvice;
 import com.gm.javaeaseframe.web.spring.boot.autoconfigure.advice.GlobalResponseAdvice;
@@ -36,7 +37,7 @@ public class WebAutoConfiguration {
      * @return
      */
     @Bean
-    @ConditionalOnProperty(name = "normal.web.cacheBody.enable", havingValue = "true", matchIfMissing = true)
+    @ConditionalOnProperty(name = PlatformConstants.PLATFORM_CONFIG_PREFIX + ".web.cacheBody.enable", havingValue = "true", matchIfMissing = true)
     public FilterRegistrationBean<?> cachingRequestBodyFilter() {
     	String[] urlPatterns = null;
     	CacheBodyProperties cacheBody = webProperties.getCacheBody();
@@ -60,7 +61,7 @@ public class WebAutoConfiguration {
      *
      */
     @Bean
-    @ConditionalOnProperty(name = "normal.web.cors.enable", havingValue = "true", matchIfMissing = false)
+    @ConditionalOnProperty(name = PlatformConstants.PLATFORM_CONFIG_PREFIX + ".web.cors.enable", havingValue = "true", matchIfMissing = false)
     public CorsFilter corsFilter() {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         final CorsConfiguration config = new CorsConfiguration();

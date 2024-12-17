@@ -7,12 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.FilterType;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
@@ -31,7 +28,8 @@ import com.gm.javaeaseframe.core.config.web.resolver.ArgumentResolverModeEnum;
 @EnableWebMvc
 //配置扫描包的策略，当前注解为只扫描加@Controller的组件
 //注意useDefaultFilters要设置为fasle，不然为默认的Filters，@Service/@Repository都扫描
-@ComponentScan(basePackages= {"com.gm.javaeaseframe"},includeFilters = { @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Controller.class) },useDefaultFilters = false)
+//basePackages= {"com.gm.javaeaseframe"},
+//@ComponentScan(includeFilters = { @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Controller.class) },useDefaultFilters = false)
 public class WebMvcConfig extends BaseWebMvcConfigurer
 {
 	private WebProperties webProperties;

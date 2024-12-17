@@ -9,7 +9,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.stereotype.Component;
 
 import com.gm.javaeaseframe.core.context.dynamic.DynamicClassLoader;
 
@@ -43,7 +42,7 @@ public class ApplicationRefreshedListener implements ApplicationListener<Context
                 if (!dynamicClassLoaderSucc) {
                     String extLibFilePath = event.getApplicationContext().getEnvironment().getProperty(EXT_LIB_FILE_PATH);
                     if (extLibFilePath != null && extLibFilePath.trim().length() > 0) {
-                        logger.info("开启动态加载扩展包功能-->" + extLibFilePath);
+                        logger.info("Open the function of loading expansion lib-->" + extLibFilePath);
                         dynamicClassLoaderSucc = true;
                         DynamicClassLoader loader = DynamicClassLoader.getInstance();
                         loader.start(this.applicationContext);

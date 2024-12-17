@@ -4,7 +4,9 @@ import java.util.Map;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties("gmframework.web")
+import com.gm.javaeaseframe.common.code.PlatformConstants;
+
+@ConfigurationProperties(PlatformConstants.PLATFORM_CONFIG_PREFIX + ".web")
 public class WebProperties {
 
 	/** 缓存RequestBody的地址规则 */

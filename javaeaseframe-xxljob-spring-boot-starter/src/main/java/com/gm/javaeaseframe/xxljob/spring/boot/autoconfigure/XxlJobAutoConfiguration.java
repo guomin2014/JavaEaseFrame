@@ -3,16 +3,19 @@ package com.gm.javaeaseframe.xxljob.spring.boot.autoconfigure;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.gm.javaeaseframe.common.code.PlatformConstants;
 import com.gm.javaeaseframe.common.util.NetUtil;
 import com.gm.javaeaseframe.xxljob.spring.boot.autoconfigure.properties.XxlJobProperties;
 import com.xxl.job.core.executor.impl.XxlJobSpringExecutor;
 
 @Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties({XxlJobProperties.class})
+@ConditionalOnProperty(name = PlatformConstants.PLATFORM_CONFIG_PREFIX + ".xxl.job.enable", havingValue = "true")
 public class XxlJobAutoConfiguration {
 
 	@Autowired

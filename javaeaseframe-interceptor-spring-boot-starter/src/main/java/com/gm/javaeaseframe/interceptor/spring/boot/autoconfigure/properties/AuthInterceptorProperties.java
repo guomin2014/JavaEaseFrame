@@ -8,7 +8,9 @@ import javax.annotation.PostConstruct;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties("gmframework.interceptor.auth")
+import com.gm.javaeaseframe.common.code.PlatformConstants;
+
+@ConfigurationProperties(PlatformConstants.PLATFORM_CONFIG_PREFIX + ".interceptor.auth")
 public class AuthInterceptorProperties {
 
 	private boolean enable;

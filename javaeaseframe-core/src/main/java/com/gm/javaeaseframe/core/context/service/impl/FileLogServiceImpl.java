@@ -6,21 +6,18 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.gm.javaeaseframe.common.code.PlatformCodeEnum;
 import com.gm.javaeaseframe.core.constains.GlobalSysInfo;
 import com.gm.javaeaseframe.core.context.service.ILogService;
 import com.gm.javaeaseframe.core.context.service.IUser;
 
-public class FileLogServiceImpl implements ILogService
-{
+public class FileLogServiceImpl implements ILogService {
 	private static FileLogServiceImpl instance = new FileLogServiceImpl();
 	
-	public static ILogService getInstance()
-	{
+	public static ILogService getInstance() {
 		return instance;
 	}
-	public static ILogService getInstance(String loggerName)
-	{
+
+	public static ILogService getInstance(String loggerName) {
 		instance.logForOper = LoggerFactory.getLogger(loggerName == null ? "com.gm.normal.framework.log" : loggerName);
 		return instance;
 	}
@@ -29,14 +26,12 @@ public class FileLogServiceImpl implements ILogService
     protected Logger logForOper = LoggerFactory.getLogger("com.gm.normal.framework.log");
     
     @Override
-	public void doHandlerLog(String platformMark, String loginName, String requestUrl, String content, String ip)
-	{
+	public void doHandlerLog(String platformMark, String loginName, String requestUrl, String content, String ip) {
 		this.doHandlerLog(platformMark, null, null, loginName, requestUrl, content, ip, new Date());
 	}
 	@Override
 	public void doHandlerLog(String platformMark, Long userId, String userName, String loginName, String requestUrl, String content, 
-			String ip, Date logDate)
-	{
+			String ip, Date logDate) {
 		this.doHandlerLog(platformMark, null, requestUrl, ip, userId, userName, loginName, null, null, null, content, logDate, null, true);
 	}
 	
@@ -47,10 +42,7 @@ public class FileLogServiceImpl implements ILogService
 		String statDuration = duration == null ? "" : duration.toString();
 		requestId = StringUtils.isBlank(requestId) ? "" : requestId;
 		if (StringUtils.isBlank(platformMark)) {
-			PlatformCodeEnum platform = PlatformCodeEnum.getByValue(GlobalSysInfo.platformCode);
-			if (platform != null) {
-				platformMark = platform.name();
-			}
+			platformMark = String.valueOf(GlobalSysInfo.platformCode);
 		}
 		if (showUser) {
 	    	logForOper.info("statLOG statMOD={} statPV=1 statUV={} statUserId={} statCustomerId={} statUserType={} statUserRole={} statIP={} statRequestId={} statURL={} statDuration={} {}",
@@ -68,11 +60,7 @@ public class FileLogServiceImpl implements ILogService
 	@Override
 	public void doHandlerLog(String requestId, String requestUrl, String requestIp, IUser user, String content,
 			Long duration, boolean showUser) {
-		String platformMark = "";
-		PlatformCodeEnum platform = PlatformCodeEnum.getByValue(GlobalSysInfo.platformCode);
-		if (platform != null) {
-			platformMark = platform.name();
-		}
+		String platformMark = String.valueOf(GlobalSysInfo.platformCode);
 		Long userId = null;
 		Long customerId = null;
 		String userName = null;

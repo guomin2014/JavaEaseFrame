@@ -56,7 +56,7 @@ public class BaseWebMvcConfigurer implements WebMvcConfigurer {
             for (BaseInterceptor interceptor : interList) {
                 if (interceptor != null) {
                     registry.addInterceptor(interceptor).addPathPatterns(interceptor.getPathPatterns());
-                    log.info("注册拦截器--->" + interceptor.getClass().getName());
+                    log.info("Interceptor registration--->" + interceptor.getClass().getName());
                 }
             }
         }

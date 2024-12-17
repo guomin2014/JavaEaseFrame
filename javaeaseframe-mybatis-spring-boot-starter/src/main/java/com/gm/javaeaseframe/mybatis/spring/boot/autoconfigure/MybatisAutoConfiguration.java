@@ -5,11 +5,12 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure;
+import com.gm.javaeaseframe.common.code.PlatformConstants;
 import com.gm.javaeaseframe.core.config.mybatis.AbstractMybatisConfiguration;
 
 @Configuration(proxyBeanMethods = false)
 @AutoConfigureAfter(DruidDataSourceAutoConfigure.class)
-@ConfigurationProperties("javaeaseframe.mybatis")
+@ConfigurationProperties(PlatformConstants.PLATFORM_CONFIG_PREFIX + ".mybatis")
 public class MybatisAutoConfiguration extends AbstractMybatisConfiguration {
 
     // 配置包根目录

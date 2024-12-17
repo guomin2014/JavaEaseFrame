@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextClosedEvent;
-import org.springframework.stereotype.Component;
 
 import com.gm.javaeaseframe.core.context.service.IApplicationService;
 import com.gm.javaeaseframe.core.context.service.IApplicationStartedService;
@@ -26,9 +25,9 @@ public class ApplicationCloseListener implements ApplicationListener<ContextClos
 //        logger.info("application Stopping...");
         synchronized (logger) {
             if (!isStop) {
-                logger.info("\n\n-------------------------------------------系统关闭-------------------------------------------");
+                logger.info("\n\n-------------------------------------------System shutting down-------------------------------------------");
                 try {
-                    logger.info("开始关闭系统后置服务...");
+                    logger.info("Start shutting down system backend services...");
                     // 退出程序后置服务的线程
                     Map<String, IApplicationStartedService> startAfterMap = event.getApplicationContext().getBeansOfType(IApplicationStartedService.class);
                     if (startAfterMap != null && !startAfterMap.isEmpty()) {
@@ -55,7 +54,7 @@ public class ApplicationCloseListener implements ApplicationListener<ContextClos
                 } catch (Exception e) {
                     
                 }
-                logger.info("开始关闭系统前置服务...");
+                logger.info("Start shutting down system front-end services...");
                 try {
                     // 退出服务的线程
                     Map<String, IApplicationService> map = event.getApplicationContext().getBeansOfType(IApplicationService.class);

@@ -22,10 +22,10 @@ public class ApplicationContextLoaderListener extends ContextLoaderListener {
 
     @Override
     public void contextInitialized(ServletContextEvent event) {
-        logger.info("Web容器初始化...");
+        logger.info("Web context init...");
         ServletContext context = event.getServletContext();
         WebApplicationContext webContext = WebApplicationContextUtils.getWebApplicationContext(context);
-        logger.info("更新容器相关参数...");
+        logger.info("Refresh web context params...");
         GlobalSysInfo.context = webContext;
         GlobalSysInfo.realRootPath = context.getRealPath("/");
         GlobalSysInfo.contextPath = context.getContextPath();

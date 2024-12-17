@@ -41,7 +41,7 @@ public class ApplicationStartedListener implements ApplicationRunner, Applicatio
 	}
 
 	public void start() {
-		logger.info("开始启动系统后置服务...");
+		logger.info("Start the system backend services......");
 		try {
 			Map<String, IApplicationStartedService> serviceMap = this.applicationContext
 					.getBeansOfType(IApplicationStartedService.class);
@@ -61,12 +61,12 @@ public class ApplicationStartedListener implements ApplicationRunner, Applicatio
 					try {
 						server.start();
 					} catch (Exception e) {
-						logger.error("启动系统后置服务异常-->" + server.getClass().getName(), e);
+						logger.error("start service error-->" + server.getClass().getName(), e);
 					}
 				}
 			}
 		} catch (Exception e) {
-			logger.error("获取系统后置服务异常", e);
+			logger.error("start service error", e);
 		}
 	}
 

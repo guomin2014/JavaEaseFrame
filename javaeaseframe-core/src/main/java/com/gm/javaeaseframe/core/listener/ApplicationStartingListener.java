@@ -9,7 +9,6 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ApplicationListener;
-import org.springframework.stereotype.Component;
 
 import com.gm.javaeaseframe.core.context.service.IApplicationService;
 import com.gm.javaeaseframe.core.context.service.ICRUDCacheService;
@@ -50,7 +49,7 @@ public class ApplicationStartingListener implements ApplicationListener<ContextP
             lock.lock();
             try {
                 if (!initCacheDataSucc) {
-                    logger.info("开始加载系统缓存数据...");
+                    logger.info("Start loading system cache...");
                     initCacheDataSucc = true;
                     Map<String, ICRUDCacheService> map = context.getBeansOfType(ICRUDCacheService.class);
                     for (ICRUDCacheService iCRUDCacheService : map.values()) {
@@ -60,7 +59,7 @@ public class ApplicationStartingListener implements ApplicationListener<ContextP
                         }
                         catch(Exception e)
                         {
-                            logger.error("加载缓存服务异常-->" + iCRUDCacheService, e);
+                            logger.error("loading cache error-->" + iCRUDCacheService, e);
                         }
                     }
                 }
@@ -70,14 +69,13 @@ public class ApplicationStartingListener implements ApplicationListener<ContextP
         }
     }
     
-    @SuppressWarnings({"deprecation" })
     private void startService(ApplicationContext context) {
         if (!startServiceSucc) {
             lock.lock();
             try {
                 if (!startServiceSucc) {
                     startServiceSucc = true;
-                    logger.info("开始启动系统前置服务...");
+                    logger.info("Start the system front-end services...");
                     try {
                         Map<String, IApplicationService> map = context.getBeansOfType(IApplicationService.class);
                         if (map != null) {
@@ -88,7 +86,7 @@ public class ApplicationStartingListener implements ApplicationListener<ContextP
                                     try {
                                         service.start();
                                     } catch (Throwable e) {
-                                        logger.error("服务启动异常-->" + name, e);
+                                        logger.error("start service error:-->" + name, e);
                                     }
                                 }
                             }
