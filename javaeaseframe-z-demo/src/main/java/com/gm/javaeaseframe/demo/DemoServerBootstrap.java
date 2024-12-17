@@ -6,10 +6,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 import com.gm.javaeaseframe.core.boot.BaseApplication;
 
-//@EnableDiscoveryClient
-//@EnableFeignClients(basePackages = {"com.gm"})
-@SpringBootApplication(scanBasePackages = {"com.gm.javaeaseframe.demo"})
-//@ServletComponentScan(basePackages = {"com.gm"})
+@SpringBootApplication
 @EnableFeignClients
 public class DemoServerBootstrap extends BaseApplication
 {

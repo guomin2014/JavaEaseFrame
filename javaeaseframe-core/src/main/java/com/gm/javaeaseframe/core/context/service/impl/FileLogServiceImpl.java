@@ -18,12 +18,12 @@ public class FileLogServiceImpl implements ILogService {
 	}
 
 	public static ILogService getInstance(String loggerName) {
-		instance.logForOper = LoggerFactory.getLogger(loggerName == null ? "com.gm.normal.framework.log" : loggerName);
+		instance.logForOper = LoggerFactory.getLogger(loggerName == null ? "com.gm.javaeaseframe.log" : loggerName);
 		return instance;
 	}
 	
 	/** 操作日志对象 */
-    protected Logger logForOper = LoggerFactory.getLogger("com.gm.normal.framework.log");
+    protected Logger logForOper = LoggerFactory.getLogger("com.gm.javaeaseframe.log");
     
     @Override
 	public void doHandlerLog(String platformMark, String loginName, String requestUrl, String content, String ip) {
