@@ -77,7 +77,7 @@ javaeaseframe:
           api-rule: package
           api-rule-resources:
             - com.gm.javaeaseframe.demo.weather.web
-  xxl:
-    job:
-      adminAddresses: http://127.0.0.1:8080/xxl-job-admin
-      appname: ${spring.application.name}
+  xxljob:
+    enable: false
+    adminAddresses: http://127.0.0.1:8080/xxl-job-admin
+    appname: ${spring.application.name}

@@ -2,7 +2,9 @@ package com.gm.javaeaseframe.xxljob.spring.boot.autoconfigure.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties("javaeaseframe.xxl.job")
+import com.gm.javaeaseframe.common.code.PlatformConstants;
+
+@ConfigurationProperties(PlatformConstants.PLATFORM_CONFIG_PREFIX + ".xxljob")
 public class XxlJobProperties {
 
 	private String adminAddresses;

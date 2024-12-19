@@ -15,7 +15,7 @@ import com.xxl.job.core.executor.impl.XxlJobSpringExecutor;
 
 @Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties({XxlJobProperties.class})
-@ConditionalOnProperty(name = PlatformConstants.PLATFORM_CONFIG_PREFIX + ".xxl.job.enable", havingValue = "true")
+@ConditionalOnProperty(name = PlatformConstants.PLATFORM_CONFIG_PREFIX + ".xxljob.enable", havingValue = "true")
 public class XxlJobAutoConfiguration {
 
 	@Autowired
