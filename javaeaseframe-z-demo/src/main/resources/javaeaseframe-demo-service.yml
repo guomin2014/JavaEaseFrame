@@ -11,23 +11,6 @@ spring:
 server:
   tomcat:
     uri-encoding: utf-8
-knife4j:
-  enable: true
-  basic:
-      enable: true
-      username: test
-      password: 123
-  openapi:
-    title: JavaEaseFrame框架-demo项目
-    description: "这是应用的描述信息"
-    email: guomin@javaeaseframe.com
-    concat: guomin
-    group:
-      group1:
-        group-name: 分组名称
-        api-rule: package
-        api-rule-resources:
-          - com.gm.javaeaseframe.demo.weather.web
 javaeaseframe:
   interceptor:
     login:
@@ -77,6 +60,23 @@ javaeaseframe:
       - name: "*"
         propagation: "SUPPORTS"
         readOnly: true
+  knife4j:
+    enable: true
+    basic:
+      enable: true
+      username: test
+      password: 123456
+    openapi:
+      title: JavaEaseFrame框架-demo项目
+      description: "这是应用的描述信息"
+      email: guomin@javaeaseframe.com
+      concat: guomin
+      group:
+        group1:
+          group-name: 分组1
+          api-rule: package
+          api-rule-resources:
+            - com.gm.javaeaseframe.demo.weather.web
   xxl:
     job:
       adminAddresses: http://127.0.0.1:8080/xxl-job-admin
