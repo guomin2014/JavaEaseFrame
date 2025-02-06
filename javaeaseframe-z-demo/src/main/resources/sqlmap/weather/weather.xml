@@ -164,7 +164,7 @@
 	</sql>
 	<!-- 新增 -->
 	<insert id="insert" parameterType="WeatherEntity" useGeneratedKeys="true" keyProperty="id">
-		insert into normal_demo_weather 
+		insert into javaeaseframe_demo_weather 
 		(areaId,city,cityCode,date,reportTime,
 			sunriseTime,sunsetTime,weatherType,weatherTypeForNight,weatherTypeForReal,
 			weather,weatherForNight,weatherForReal,airTemperature,airTemperatureForNight,
@@ -184,7 +184,7 @@
 	</insert>
 	<!-- 批量新增 -->
 	<insert id="insertBatch" parameterType="paramDto" useGeneratedKeys="true" keyProperty="id">
-		insert into normal_demo_weather 
+		insert into javaeaseframe_demo_weather 
 		(areaId,city,cityCode,date,reportTime,
 			sunriseTime,sunsetTime,weatherType,weatherTypeForNight,weatherTypeForReal,
 			weather,weatherForNight,weatherForReal,airTemperature,airTemperatureForNight,
@@ -208,7 +208,7 @@
 	</insert>
 	<!-- 根据ParamDto更新 -->
 	<update id="update" parameterType="paramDto">
-		update normal_demo_weather as a
+		update javaeaseframe_demo_weather as a
 		   set
 		   <trim suffixOverrides="," suffix="">
 				<if test="(colPickMode==0 and data.containsKey('areaId')) or (colPickMode==1 and !data.containsKey('areaId'))">
@@ -383,7 +383,7 @@
 	</update>
 	<!-- 批量更新 -->
 	<update id="updateBatch" parameterType="paramDto">
-		update normal_demo_weather as a
+		update javaeaseframe_demo_weather as a
 		<trim prefix="set" suffixOverrides=",">
 			<trim prefix="areaId=(case" suffix="ELSE areaId end),">
 				<foreach collection="data.dataList" item="item" index="index" separator="" >
@@ -736,23 +736,23 @@
 	<!-- 根据主健查询 -->
 	<select id="getByKey" parameterType="paramDto" resultMap="WeatherEntity-Map">
 		select <include refid="_columns"/>
-		from normal_demo_weather as a
+		from javaeaseframe_demo_weather as a
 	   where a.id=#{condition.id}
 	</select>
 	<!-- 根据主健删除 -->
 	<delete id="deleteByKey" parameterType="paramDto">
-		delete a.* from normal_demo_weather as a where a.id=#{condition.id}
+		delete a.* from javaeaseframe_demo_weather as a where a.id=#{condition.id}
 	</delete>
 	<!-- 根据主健删除一批，针对单一主健有效 -->
 	<delete id="deleteByKeys">
-		delete from normal_demo_weather where id in
+		delete from javaeaseframe_demo_weather where id in
 		<foreach collection="array" item="item" index="index" open="(" separator="," close=")">
 			#{item}
 		</foreach>
 	</delete>
 	<!-- 根据paramDto删除一批 -->
 	<delete id="deleteByMap" parameterType="paramDto">
-		delete a.* from normal_demo_weather as a
+		delete a.* from javaeaseframe_demo_weather as a
 		<trim suffixOverrides="where" suffix="">
 			 where 
 			<trim prefixOverrides="and" prefix="">
@@ -763,7 +763,7 @@
 	<!-- 获取列表 -->
 	<select id="getList" parameterType="paramDto" resultMap="WeatherEntity-Map">
 		select <include refid="_columns"/>
-		  from normal_demo_weather as a
+		  from javaeaseframe_demo_weather as a
 		 <trim suffixOverrides="where" suffix="">
 			 where 
 			 <trim prefixOverrides="and" prefix="">
@@ -775,7 +775,7 @@
 	<!-- 获取 -->
 	<select id="getListCount" parameterType="paramDto" resultType="int">
 		select count(1)
-		  from normal_demo_weather as a
+		  from javaeaseframe_demo_weather as a
 		 <trim suffixOverrides="where" suffix="">
 			 where 
 			 <trim prefixOverrides="and" prefix="">
@@ -832,7 +832,7 @@
 				</foreach>
 			</trim>
 		</if>
-		FROM normal_demo_weather AS a
+		FROM javaeaseframe_demo_weather AS a
 		 <trim suffixOverrides="where" suffix="">
 			 WHERE 
 			 <trim prefixOverrides="and" prefix="">
@@ -845,7 +845,7 @@
 	<!-- 获取分组列表 -->
 	<select id="getStatListCount" parameterType="paramDto" resultType="int">
 		SELECT count(1)
-		FROM normal_demo_weather AS a
+		FROM javaeaseframe_demo_weather AS a
 		 <trim suffixOverrides="where" suffix="">
 			 WHERE 
 			 <trim prefixOverrides="and" prefix="">

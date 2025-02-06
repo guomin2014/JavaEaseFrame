@@ -1,4 +1,4 @@
-package com.gm.javaeaseframe.interceptor.spring.boot.autoconfigure.interceptor;
+package com.gm.javaeaseframe.interceptor.spring.boot.autoconfigure.auth.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +13,7 @@ import com.gm.javaeaseframe.core.context.interceptor.BaseInterceptor;
 import com.gm.javaeaseframe.core.context.service.IAuthService;
 import com.gm.javaeaseframe.core.context.service.IUser;
 import com.gm.javaeaseframe.core.context.web.dto.CommonResult;
-import com.gm.javaeaseframe.interceptor.spring.boot.autoconfigure.properties.AuthInterceptorProperties;
+import com.gm.javaeaseframe.interceptor.spring.boot.autoconfigure.auth.properties.AuthInterceptorProperties;
 
 /**
  * 权限拦截器(需要晚于登录拦截器)

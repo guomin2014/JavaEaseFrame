@@ -33,11 +33,10 @@ import com.gm.javaeaseframe.core.constains.GlobalSysInfo;
 import com.gm.javaeaseframe.core.constains.SysConstains;
 import com.gm.javaeaseframe.core.context.model.Context;
 import com.gm.javaeaseframe.core.context.model.CookieInfo;
-import com.gm.javaeaseframe.core.context.service.ILogService;
+import com.gm.javaeaseframe.core.context.service.IOperLogService;
 import com.gm.javaeaseframe.core.context.service.ITokenService;
 import com.gm.javaeaseframe.core.context.service.IUser;
 import com.gm.javaeaseframe.core.context.service.impl.CookieService;
-import com.gm.javaeaseframe.core.context.service.impl.FileLogServiceImpl;
 import com.gm.javaeaseframe.core.context.service.impl.User;
 import com.gm.javaeaseframe.core.context.web.dto.CommonResult;
 import com.gm.javaeaseframe.core.thirty.spring.CustomDateEditor;
@@ -74,7 +73,7 @@ public abstract class BaseController {
     @Autowired(required=false)
     private ITokenService tokenService;
     @Autowired(required=false)
-    protected ILogService logService = FileLogServiceImpl.getInstance();
+    protected IOperLogService operLogService;
 
     /**
      * 数据绑定类型转换
@@ -715,12 +714,12 @@ public abstract class BaseController {
     }
     
     protected void recordSysLog(HttpServletRequest request, IUser sysUser, String message) {
-		if (logService != null) {
+		if (operLogService != null) {
 			String requestUrl = request.getRequestURI();
 			String requestIp = this.getRequestIP(request);
 	    	String requestId = this.getRequestId();
 			try {
-				logService.doHandlerLog(requestId, requestUrl, requestIp, sysUser, message, null);
+				operLogService.doHandlerLog(requestId, requestUrl, requestIp, sysUser, message);
 			} catch (Exception e) {
 				log.debug("记录系统操作日志异常-->" + e.getMessage());
 			}

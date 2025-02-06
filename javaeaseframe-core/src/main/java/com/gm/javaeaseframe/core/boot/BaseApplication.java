@@ -4,8 +4,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean;
 
 import com.gm.javaeaseframe.core.context.service.ICacheService;
-import com.gm.javaeaseframe.core.context.service.ILogService;
-import com.gm.javaeaseframe.core.context.service.impl.FileLogServiceImpl;
 import com.gm.javaeaseframe.core.context.service.impl.LocalCacheServiceImpl;
 
 /**
@@ -20,11 +18,6 @@ public class BaseApplication {
     @ConditionalOnMissingBean({ICacheService.class})
     public ICacheService cacheService() {
         return new LocalCacheServiceImpl();
-    }
-    @Bean
-    @ConditionalOnMissingBean({ILogService.class})
-    public ILogService logService() {
-    	return FileLogServiceImpl.getInstance();
     }
     
 }

@@ -1,4 +1,4 @@
-package com.gm.javaeaseframe.interceptor.spring.boot.autoconfigure.interceptor;
+package com.gm.javaeaseframe.interceptor.spring.boot.autoconfigure.login.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +11,7 @@ import com.gm.javaeaseframe.core.common.ExceptionCodeUtil;
 import com.gm.javaeaseframe.core.context.interceptor.BaseInterceptor;
 import com.gm.javaeaseframe.core.context.service.IUser;
 import com.gm.javaeaseframe.core.context.web.dto.CommonResult;
-import com.gm.javaeaseframe.interceptor.spring.boot.autoconfigure.properties.LoginInterceptorProperties;
+import com.gm.javaeaseframe.interceptor.spring.boot.autoconfigure.login.properties.LoginInterceptorProperties;
 
 /**
  * 登录拦截器

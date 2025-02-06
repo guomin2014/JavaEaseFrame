@@ -14,18 +14,22 @@ server:
 javaeaseframe:
   interceptor:
     login:
-      enable: true
+      enable: false
       uncheckUrl: /error,/refresh,/health,/doc.html,/swagger-resources,/v2/api-docs,/favicon.ico,/webjars/*,/inner/*
     auth:
       enable: false
       uncheckUrl: /error,/refresh,/health,/common/login,/api/*
     log:
-      enable: true
-      fetchFromNativeRequestEnable: true
-      printRequestUser: true
-      printRequestBody: true
-      printResponseBody: true
-      printPosition: beforeAndAfter
+      printPosition: 
+        beforeAdvice:
+          enable: false
+        afterAdvice:
+          enable: true
+          fetchFromNativeRequestEnable: true
+          printRequestUser: false
+          printRequestBody: true
+          printResponseBody: true
+          format: statMOD=${MOD} statPV=${PV} statIP=${IP} statURL=${URL} statDuration=${Duration} ${Message}
   web:
     cors:
       enable: true

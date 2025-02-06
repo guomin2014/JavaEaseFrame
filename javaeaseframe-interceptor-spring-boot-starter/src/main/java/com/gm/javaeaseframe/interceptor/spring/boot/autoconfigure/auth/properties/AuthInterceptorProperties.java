@@ -1,4 +1,4 @@
-package com.gm.javaeaseframe.interceptor.spring.boot.autoconfigure.properties;
+package com.gm.javaeaseframe.interceptor.spring.boot.autoconfigure.auth.properties;
 
 import java.util.HashSet;
 import java.util.Set;
