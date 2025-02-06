@@ -8,10 +8,10 @@ import com.gm.javaeaseframe.core.boot.BaseApplication;
 
 @SpringBootApplication
 @EnableFeignClients
-public class DemoServerBootstrap extends BaseApplication
+public class DemoBootstrap extends BaseApplication
 {
     
     public static void main(String[] args) {
-        SpringApplication.run(DemoServerBootstrap.class, args);
+        SpringApplication.run(DemoBootstrap.class, args);
     }
 }

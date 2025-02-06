@@ -45,9 +45,6 @@ import com.gm.javaeaseframe.demo.weather.web.dto.WeatherRequestPageDto;
 import com.gm.javaeaseframe.demo.weather.web.dto.WeatherResponseDto;
 import com.gm.javaeaseframe.web.spring.boot.autoconfigure.annotation.GlobalException;
 
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-
 /**
  * <p>Title: 城市天气信息</p>
  * <p>Description: WeatherController  </p>
@@ -110,12 +107,6 @@ public class WeatherController extends BaseCRUDJsonMappingController<WeatherServ
 	 */
 	@PostMapping("forecasts")
 	@CustomApiOperation(value = "获取天气预报")
-	@ApiImplicitParams({
-        @ApiImplicitParam(name = "name",value = "名称",example = "张飞",dataTypeClass = String.class),
-        @ApiImplicitParam(name = "money",value = "金钱",example = "123",dataTypeClass = Long.class),
-        @ApiImplicitParam(name = "age",value = "年龄",example = "22",dataTypeClass = Integer.class)
-
-})
     public String doForecasts(HttpServletRequest request, HttpServletResponse response, WeatherForm form) {
 	    JSONObject ret = new JSONObject();
 	    Map<String, Object> model = new HashMap<>();

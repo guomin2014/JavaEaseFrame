@@ -20,7 +20,7 @@
             <properties>
                 <profiles.active>dev</profiles.active>
                 <profiles.log.level>INFO</profiles.log.level>
-                <profiles.log.path>/export/logs/www.normal.com/</profiles.log.path>
+                <profiles.log.path>/export/logs/www.javaeaseframe.com/</profiles.log.path>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -31,7 +31,7 @@
             <properties>
                 <profiles.active>test</profiles.active>
                 <profiles.log.level>INFO</profiles.log.level>
-                <profiles.log.path>/export/logs/www.normal.com/</profiles.log.path>
+                <profiles.log.path>/export/logs/www.javaeaseframe.com/</profiles.log.path>
             </properties>
         </profile>
         <profile>
@@ -39,7 +39,7 @@
             <properties>
                 <profiles.active>prod</profiles.active>
                 <profiles.log.level>INFO</profiles.log.level>
-                <profiles.log.path>/export/logs/www.normal.com/</profiles.log.path>
+                <profiles.log.path>/export/logs/www.javaeaseframe.com/</profiles.log.path>
             </properties>
         </profile>
     </profiles>
